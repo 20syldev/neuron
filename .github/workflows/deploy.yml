@@ -1,4 +1,4 @@
-name: Deploy digit.sylvain.pro
+name: Deploy digit.sylvain.sh
 
 on:
   push:
