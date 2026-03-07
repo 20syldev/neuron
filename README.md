@@ -2,7 +2,7 @@
   <a href="https://digit.sylvain.sh"><img src="https://digit.sylvain.sh/assets/images/logo.png" alt="Logo" width="25%" height="auto"/></a>
 
   # Digit - IA de reconnaissance de chiffres
-  [![Version](https://custom-icon-badges.demolab.com/badge/Version%20:-v1.2.0-6479ee?logo=digit.sylvain.sh&labelColor=23272A)](https://github.com/20syldev/digit/releases/latest)
+  [![Version](https://custom-icon-badges.demolab.com/badge/Version%20:-v1.3.0-6479ee?logo=digit.sylvain.sh&labelColor=23272A)](https://github.com/20syldev/digit/releases/latest)
 </div>
 
 ---
