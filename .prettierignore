@@ -1,0 +1,4 @@
+.next/
+out/
+public/models
+package-lock.json
