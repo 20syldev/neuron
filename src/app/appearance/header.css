@@ -1,0 +1,63 @@
+/*
+ * Header: halftone wordmark, "n" mark and scroll-driven compact bar.
+ * --mh is the masthead height (wordmark block, plus the tagline block on a phone), the scroll
+ * distance after which the compact bar sticks and its layers cross-fade.
+ */
+.hd-root {
+    --mh: calc(48px + (min(100vw, 1280px) - 2 * var(--gutter)) / 4);
+}
+
+@media (max-width: 760px) {
+    :root {
+        --control: 44px;
+        --bar-height: 52px;
+    }
+
+    .hd-root {
+        --mh: calc(111px + (100vw - 2 * var(--gutter)) / 4);
+    }
+}
+
+/* Header scroll cross-fade: without scroll timelines the bar shows its compact tools only. */
+.hd-strip {
+    display: none;
+}
+
+@keyframes hdToolsIn {
+    from {
+        opacity: 0;
+        visibility: hidden;
+    }
+    to {
+        opacity: 1;
+        visibility: visible;
+    }
+}
+
+@keyframes hdStripOut {
+    from {
+        opacity: 1;
+        visibility: visible;
+    }
+    to {
+        opacity: 0;
+        visibility: hidden;
+    }
+}
+
+@supports (animation-timeline: scroll(root)) {
+    .hd-strip {
+        display: block;
+        animation: hdStripOut linear both;
+        animation-timeline: scroll(root);
+        animation-range: calc(var(--mh) - 76px) calc(var(--mh) - 44px);
+    }
+
+    .hd-tools {
+        opacity: 0;
+        visibility: hidden;
+        animation: hdToolsIn linear both;
+        animation-timeline: scroll(root);
+        animation-range: calc(var(--mh) - 44px) calc(var(--mh) - 4px);
+    }
+}

@@ -1,0 +1,36 @@
+@layer base {
+    * {
+        @apply border-border;
+    }
+
+    html {
+        scroll-behavior: smooth;
+        scroll-padding-top: calc(var(--bar-height) + 16px);
+        scroll-padding-bottom: 104px;
+    }
+
+    body {
+        @apply bg-background font-sans text-foreground antialiased;
+    }
+
+    p,
+    li,
+    dd {
+        text-wrap: pretty;
+    }
+
+    :focus-visible {
+        outline: 2px solid var(--ring);
+        outline-offset: 2px;
+    }
+
+    ::selection {
+        background: color-mix(in oklab, var(--signal) 35%, transparent);
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    html {
+        scroll-behavior: auto;
+    }
+}

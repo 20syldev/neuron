@@ -1,0 +1,9 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+
+@import "./appearance/theme.css";
+@import "./appearance/base.css";
+@import "./appearance/header.css";
+@import "./appearance/wordmark.css";
+
+@custom-variant dark (&:is(.dark *));
