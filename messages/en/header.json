@@ -1,0 +1,72 @@
+{
+    "contents": "Contents",
+    "skip": "Skip to the essay",
+    "close": "Close contents",
+    "title": "From ink to meaning",
+    "nav": "Essay navigation",
+    "parts": {
+        "1": "See",
+        "2": "Read",
+        "2more": "Part II, continued"
+    },
+    "extras": {
+        "prologue": "Prologue",
+        "interlude": "Interlude",
+        "epilogue": "Epilogue"
+    },
+    "tags": {
+        "read": "read",
+        "current": "current"
+    },
+    "aria": {
+        "read": "Chapter {number}: {title}, read",
+        "current": "Chapter {number}: {title}, current, {percent} read",
+        "next": "Chapter {number}: {title}"
+    },
+    "status": {
+        "read": "{count, plural, one {# chapter read out of 15} other {# chapters read out of 15}}",
+        "current": "Current: chapter {number}, {percent} read",
+        "prologue": "Prologue, current",
+        "count": "{count} of 15 read"
+    },
+    "chapters": {
+        "1": "Draw a digit",
+        "2": "What the network sees",
+        "3": "Layer after layer",
+        "4": "What a neuron looks for",
+        "5": "The problem",
+        "6": "The attention graph",
+        "7": "Query, key, value",
+        "8": "The dot product",
+        "9": "Softmax",
+        "10": "The weighted sum",
+        "11": "The attention grid",
+        "12": "Word order",
+        "13": "Several heads",
+        "14": "The causal mask",
+        "15": "Layers and cost"
+    },
+    "language": {
+        "label": "Language",
+        "fr": "FR: français",
+        "en": "EN: English"
+    },
+    "theme": {
+        "toggle": "Toggle theme"
+    },
+    "toc": {
+        "count": "{total} chapters, {read} read",
+        "legend": "Legend",
+        "read": "read",
+        "current": "current",
+        "next": "to read",
+        "partPrefix": "Part {part}: ",
+        "subtitle": {
+            "1": "A perceptron recognises a digit",
+            "2": "A transformer decides which words listen to each other"
+        },
+        "range": "{from} to {to}",
+        "interlude": "Interlude: What a fixed gaze cannot do",
+        "epilogue": "Epilogue: What “il” learned"
+    }
+}

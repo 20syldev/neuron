@@ -1,0 +1,30 @@
+{
+    "ch13": {
+        "headline": "For the same “il”, four heads, four readings: the heaviest weight of the row ranges from <n>{max}</n> on “{maxWord}” to <n>{min}</n> on “{minWord}”.",
+        "intro": "An attention grid captures only one kind of relation: here, the one that links “il” to its noun. A sentence holds many others. So a transformer computes several grids in parallel, each called a head, and every head reads the same sentence in its own way.",
+        "combine": "The results of all the heads are then combined into one. Nobody assigns them a role: each head discovers its own during training. The plate below shows four of them, on the sentence we have followed from the start: the second is the grid of the previous chapters.",
+        "noteLabel": "Illustrative",
+        "note": "These four heads are illustrative: their rules are set by hand, whereas real heads learn their roles on their own and are rarely this clean.",
+        "crossLabel": "See also",
+        "cross": "GPT-3 (2020) stacks {heads} heads in each of its layers: see <ch15>chapter 15</ch15>.",
+        "head": "Head {n}",
+        "names": {
+            "previous": "the previous word",
+            "reference": "the reference",
+            "neighbours": "the neighbours",
+            "overview": "the overview"
+        },
+        "legend": {
+            "one": "“il” looks at “{top}”: {share}",
+            "tie": "“il” looks at “{top}” and “{second}”: {share} each"
+        },
+        "figureLabel": "Four attention heads on the same sentence, each with a grid of {words} words by {words}.",
+        "gridLabel": "Head {n}: {name}. Marker 1: the row of “il”. Marker 2: {legend}.",
+        "caption": "Four attention heads on the same sentence, each with its own {words} x {words} grid, read as in <ch11>chapter 11</ch11>. <c1></c1> The row of “il”, framed in each grid. <c2></c2> The word “il” looks at most, in orange, with its weight (two words if they tie).",
+        "table": {
+            "label": "Weight of the row of “il” in the four heads, one word per line",
+            "word": "Word"
+        },
+        "next": "One special case remains: a model that writes can only look at what comes before."
+    }
+}

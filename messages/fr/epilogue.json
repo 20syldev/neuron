@@ -1,0 +1,22 @@
+{
+    "kicker": "Épilogue",
+    "headline": "Ce que «\u00a0il\u00a0» a appris",
+    "text": "Au départ, «\u00a0il\u00a0» n’était qu’une liste de nombres, la même dans toutes les phrases. Il a posé une question, comparé sa requête aux clés de tous les mots, transformé les scores en recette, puis mélangé les valeurs. À la sortie, il désigne l’animal fatigué ou le boulevard trop large\u00a0: son sens lui vient des autres mots.",
+    "summaryLabel": "Résumé",
+    "summary": "Une question, des clés, des scores, une recette, un mélange\u00a0: ce sont les <ch7>chapitres 7 à 10</ch7>.",
+    "further": "Pour aller plus loin",
+    "references": {
+        "attention": {
+            "title": "Attention Is All You Need",
+            "author": "Vaswani et al., 2017"
+        },
+        "illustrated": {
+            "title": "The Illustrated Transformer",
+            "author": "Jay Alammar, 2018"
+        },
+        "video": {
+            "title": "Attention in transformers, visually explained",
+            "author": "3Blue1Brown, 2024"
+        }
+    }
+}

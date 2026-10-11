@@ -1,0 +1,12 @@
+{
+    "title": {
+        "first": "From ink",
+        "second": "to meaning"
+    },
+    "label": "Prologue",
+    "lead": "How a neural network recognises a digit you draw, then how a transformer reads a sentence by deciding which words listen to each other. Fifteen chapters, two experiments, and everything runs in your browser.",
+    "start": "Start by drawing a digit",
+    "jump": "Jump to Part II",
+    "noteLabel": "Note",
+    "note": "Two parts, fifteen chapters and two experiments. All the computation happens locally, in your browser."
+}

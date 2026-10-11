@@ -1,0 +1,28 @@
+{
+    "kit": {
+        "part": "Partie II",
+        "read": "Lire",
+        "chapterTitle": "Chapitre {n}\u00a0: {title}. ",
+        "nextChapter": "Chapitre {n}\u00a0: {title}",
+        "note": "Note",
+        "plate": "Planche",
+        "figure": "Fig.",
+        "callout": "repère {n}",
+        "numbers": {
+            "show": "Voir les nombres",
+            "hide": "Masquer"
+        },
+        "variant": {
+            "tired": "fatigué",
+            "wide": "large",
+            "sentence": "phrase en «\u00a0<b>{word}</b>\u00a0»",
+            "frozen": "phrase figée en «\u00a0{word}\u00a0»",
+            "change": "changer",
+            "changeLabel": "Changer le dernier mot de la phrase (chapitre 5)"
+        },
+        "switch": {
+            "sentence": "Dernier mot de la phrase",
+            "short": "Dernier mot"
+        }
+    }
+}

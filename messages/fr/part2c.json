@@ -1,0 +1,174 @@
+{
+    "ch11": {
+        "headline": "<n>{words}\u00a0mots</n> regardent <n>{words}\u00a0mots</n>\u00a0: <n>{weights}\u00a0poids</n>, calculés d’un seul coup.",
+        "intro": "Tous les mots font la même chose en même temps\u00a0: chacun envoie une requête, chacun offre une clé. Le résultat est une grille, la matrice d’attention, qu’un GPU calcule d’un seul coup.",
+        "noteParallel": "Aucune case n’attend une autre\u00a0: un GPU les remplit toutes en parallèle.",
+        "reading": "La ligne<c1></c1> de «\u00a0il\u00a0» donne {ilA} à «\u00a0animal\u00a0» et {ilF} à «\u00a0{tired}\u00a0»\u00a0; chaque ligne totalise exactement {total}. La colonne<c2></c2> de «\u00a0animal\u00a0» dit qui le regarde\u00a0: surtout «\u00a0il\u00a0» ({ilA}) et «\u00a0n’a\u00a0» ({naA}), alors que «\u00a0était\u00a0» ne le regarde qu’à {lA}.",
+        "noteOpening": "C’est la grille de l’ouverture de cette partie. Sa ligne «\u00a0il\u00a0» est exactement celle du <ch9>chapitre 9</ch9>, phrase en «\u00a0{tired}\u00a0».",
+        "figureLabel": "Grille d’attention complète, {words} mots sur {words}. Repère 1\u00a0: la ligne de «\u00a0il\u00a0». Repère 2\u00a0: la colonne de «\u00a0animal\u00a0».",
+        "caption": "La grille d’attention complète, {words} mots sur {words}. <c1></c1> La ligne de «\u00a0il\u00a0». <c2></c2> La colonne de «\u00a0animal\u00a0». Une ligne totalise {total}\u00a0; une colonne n’a pas de total fixé.",
+        "facts": {
+            "row": {
+                "label": "Ligne de «\u00a0il\u00a0»",
+                "value": "«\u00a0animal\u00a0» {ilA}<br></br>«\u00a0{tired}\u00a0» {ilF}<br></br>total {total}"
+            },
+            "column": {
+                "label": "Colonne «\u00a0animal\u00a0»",
+                "value": "«\u00a0il\u00a0» {ilA}<br></br>«\u00a0n’a\u00a0» {naA}<br></br>«\u00a0était\u00a0» {lA}"
+            },
+            "weights": {
+                "label": "Poids",
+                "value": "{words}\u00a0x\u00a0{words} = {weights}"
+            }
+        },
+        "matrix": {
+            "whoLooks": "qui regarde",
+            "lookedAt": "regardé"
+        },
+        "readingLabel": "Lecture",
+        "readingNote": "Une ligne\u00a0: ce que regarde un mot. Une colonne\u00a0: qui regarde ce mot.",
+        "next": "Cette grille ne sait pourtant rien de l’ordre des mots\u00a0: il faut marquer la place de chacun."
+    },
+    "ch12": {
+        "headline": "Sans position, «\u00a0mord\u00a0» donne <n>{tie}</n> à chaque nom\u00a0; avec elle, le sujet gagne\u00a0: <n>{win}</n> contre {lose}.",
+        "intro": "«\u00a0le chien mord l’homme\u00a0» et «\u00a0l’homme mord le chien\u00a0» emploient les mêmes cinq mots, mais leur sens s’inverse. Or l’attention des chapitres précédents ne regarde que les mots, pas leur place\u00a0: sans autre information, la ligne de «\u00a0mord\u00a0» est exactement la même dans les deux phrases, et le réseau ne peut pas savoir qui mord qui.",
+        "toyLabel": "Jouet",
+        "toyNote": "Ces scores sont réglés à la main pour ce jouet\u00a0: un vrai modèle apprend les siens, sur des milliards de phrases, et son marqueur de position n’est pas un simple point de bonus.",
+        "plan": "Il faut donc ajouter à chaque mot, avant l’attention, un marqueur de sa place\u00a0: un petit signal chiffré qui dit «\u00a0premier\u00a0», «\u00a0deuxième\u00a0», «\u00a0troisième\u00a0». Le transformer d’origine le fabriquait avec des ondes sinusoïdales\u00a0; le jouet ci-dessous le réduit à son effet le plus simple, un point de score en plus pour le mot juste avant. Basculez le marqueur\u00a0: la ligne de «\u00a0mord\u00a0»<c1></c1> change, et celui qui mord prend la tête des mots les plus regardés<c2></c2>.",
+        "rotationNote": "Beaucoup de modèles récents n’ajoutent rien aux mots\u00a0: ils font tourner les requêtes et les clés d’un angle qui dépend de la place. La méthode change, l’idée reste la même\u00a0: marquer où se trouve chaque mot.",
+        "switch": {
+            "label": "Marqueur de position",
+            "off": "sans marqueur de position",
+            "on": "avec marqueur de position"
+        },
+        "aside": "ce que regarde «\u00a0mord\u00a0»",
+        "words": {
+            "le": "le",
+            "chien": "chien",
+            "mord": "mord",
+            "l'": "l’",
+            "homme": "homme"
+        },
+        "panel": {
+            "dog": {
+                "title": "Phrase A",
+                "text": "le chien mord l’homme",
+                "biter": "Qui mord\u00a0: «\u00a0chien\u00a0»"
+            },
+            "man": {
+                "title": "Phrase B",
+                "text": "l’homme mord le chien",
+                "biter": "Qui mord\u00a0: «\u00a0homme\u00a0»"
+            },
+            "label": "{title}, {text}. Poids que «\u00a0mord\u00a0» donne à chaque mot\u00a0: {weights}.",
+            "top": "Les plus regardés\u00a0: «\u00a0{first}\u00a0», puis «\u00a0{second}\u00a0»",
+            "tie": "Les plus regardés\u00a0: «\u00a0{first}\u00a0» et «\u00a0{second}\u00a0», à égalité"
+        },
+        "verdict": {
+            "off": {
+                "tag": "Identiques",
+                "text": "Les deux lignes de «\u00a0mord\u00a0» sont identiques\u00a0: «\u00a0{first}\u00a0» et «\u00a0{second}\u00a0» reçoivent {tie} chacun, dans la phrase A comme dans la phrase B."
+            },
+            "on": {
+                "tag": "Sujet en tête",
+                "text": "Dans chaque phrase, celui qui mord l’emporte\u00a0: dans la phrase A, «\u00a0{aFirst}\u00a0» {aWin} contre {aLose} pour «\u00a0{aSecond}\u00a0»\u00a0; dans la phrase B, «\u00a0{bFirst}\u00a0» {bWin} contre {bLose} pour «\u00a0{bSecond}\u00a0»."
+            }
+        },
+        "caption": "<c1></c1> Le mot qui regarde, «\u00a0mord\u00a0», à la même place ({place}) dans les deux phrases. <c2></c2> Ses deux mots les plus regardés, en orange. L’aire d’un point suit le poids. Avec le marqueur, chaque mot porte sa place et le mot juste avant «\u00a0mord\u00a0» gagne +{bonus} sur son score.",
+        "readingLabel": "Lecture",
+        "readingNote": "Une seule ligne par phrase\u00a0: celle de «\u00a0mord\u00a0». L’aire d’un point suit le poids, comme dans la grille du <ch11>chapitre 11</ch11>.",
+        "table": {
+            "label": "{title}, {text}",
+            "word": "mot",
+            "off": "sans",
+            "on": "avec",
+            "marker": "marqueur",
+            "total": "total"
+        },
+        "facts": {
+            "rule": {
+                "label": "Marqueur du jouet",
+                "value": "+{bonus} sur le score brut du mot juste avant celui qui regarde"
+            },
+            "raw": {
+                "label": "Scores bruts de «\u00a0mord\u00a0», sans puis avec le marqueur",
+                "value": "Phrase A, «\u00a0chien\u00a0»\u00a0: {a0}, puis {a1}<br></br>Phrase B, «\u00a0homme\u00a0»\u00a0: {b0}, puis {b1}"
+            },
+            "sum": {
+                "label": "Total d’une ligne",
+                "value": "{total} dans chaque cas"
+            }
+        },
+        "next": "Une seule grille ne suffit pourtant pas\u00a0: un transformer en calcule plusieurs en parallèle."
+    },
+    "ch14": {
+        "headline": "Arrivé sur «\u00a0il\u00a0», le modèle hésite\u00a0: «\u00a0animal\u00a0» <n>{ilA}</n>, «\u00a0boulevard\u00a0» <n>{ilB}</n>.",
+        "intro": "Un chatbot écrit mot après mot\u00a0: chaque mot ne peut regarder qu’en arrière, car un masque causal cache tout ce qui suit. Quand le modèle arrive sur «\u00a0il\u00a0», il n’a pas encore vu «\u00a0{tired}\u00a0».",
+        "cellsLabel": "Cases",
+        "cells": "Cases masquées\u00a0: {masked} sur {cells}, tout ce qui se trouve au-dessus de la diagonale.",
+        "reading": "Arrivé sur «\u00a0il\u00a0»<c1></c1>, le modèle n’a lu que dix mots\u00a0: il hésite entre «\u00a0animal\u00a0» ({ilA}) et «\u00a0boulevard\u00a0» ({ilB}), et rien ne tranche encore. C’est «\u00a0{tired}\u00a0»<c2></c2>, plus loin, qui regarde en arrière\u00a0: vers «\u00a0il\u00a0» ({fIl}) et vers «\u00a0animal\u00a0» ({fA}). Le dernier mot recolle «\u00a0il\u00a0» à l’animal.",
+        "rows": "Chaque ligne fait toujours {total}, mais sur les seuls mots déjà lus.",
+        "figureLabel": "Grille causale, {words} mots sur {words}\u00a0: la moitié supérieure, les mots futurs, est masquée. «\u00a0il\u00a0» hésite entre «\u00a0animal\u00a0» {ilA} et «\u00a0boulevard\u00a0» {ilB}. «\u00a0{tired}\u00a0» regarde «\u00a0il\u00a0» à {fIl} et «\u00a0animal\u00a0» à {fA}.",
+        "tag": "futur masqué",
+        "caption": "La grille causale\u00a0: les mots futurs sont masqués. <c1></c1> La ligne de «\u00a0il\u00a0», qui n’a lu que dix mots. <c2></c2> La ligne de «\u00a0{tired}\u00a0», qui regarde en arrière.",
+        "facts": {
+            "masked": {
+                "label": "Cases masquées",
+                "value": "{masked} sur {cells}"
+            },
+            "hesitates": {
+                "label": "«\u00a0il\u00a0» hésite",
+                "value": "«\u00a0animal\u00a0» {ilA}<br></br>«\u00a0boulevard\u00a0» {ilB}"
+            },
+            "backward": {
+                "label": "«\u00a0{tired}\u00a0» regarde en arrière",
+                "value": "«\u00a0il\u00a0» {fIl}<br></br>«\u00a0animal\u00a0» {fA}"
+            },
+            "sentence": {
+                "label": "Phrase",
+                "value": "en «\u00a0{tired}\u00a0», figée"
+            }
+        },
+        "readingLabel": "Lecture",
+        "readingNote": "Les hachures marquent les mots pas encore écrits\u00a0: le modèle ne peut pas les regarder.",
+        "next": "Reste à mesurer le prix de tout cela\u00a0: des couches, des têtes et des comparaisons."
+    },
+    "ch15": {
+        "headline": "Doubler la phrase quadruple le travail\u00a0: de <n>{comparisons}</n> à <n>{doubled}</n> comparaisons.",
+        "intro": "GPT-3 (2020) empile {layers} couches de {heads} têtes, soit {total} têtes d’attention. Et comme chaque mot se compare à tous les autres, doubler le texte quadruple le travail.",
+        "gptNote": "GPT-3 (2020) aligne {heads} têtes dans chacune de ses {layers} couches. Il est cité parce que ses chiffres sont publics\u00a0: les grands modèles commerciaux récents ne publient généralement pas leur architecture.",
+        "reading": "Un point par tête, une couche par ligne\u00a0: le point orange<c1></c1> est une seule tête, une grille {words}\u00a0x\u00a0{words} comme celle du <ch11>chapitre 11</ch11>. Pour {words} mots, la grille compte {comparisons} comparaisons\u00a0; pour {doubledWords} mots, {doubled}<c2></c2>, soit quatre fois plus.",
+        "doublingNote": "Doubler le texte\u00a0: {words} mots donnent {comparisons} comparaisons, {doubledWords} mots en donnent {doubled}.",
+        "aside": "{total} têtes",
+        "axisLayers": "{layers} couches",
+        "axisHeads": "{heads} têtes par couche",
+        "figureLabel": "{total} points\u00a0: une tête d’attention par point, {layers} couches de {heads} têtes. Un point orange\u00a0: une seule tête.",
+        "summary": "GPT-3 (2020)\u00a0: {layers} couches fois {heads} têtes, soit {total} têtes d’attention.",
+        "statLabel": "têtes d’attention dans GPT-3 (2020)",
+        "statFormula": "{layers} couches x {heads} têtes",
+        "smallWords": "{words} mots",
+        "bigWords": "{doubledWords} mots",
+        "smallComparisons": "{comparisons} comparaisons",
+        "bigComparisons": "{doubled} comparaisons",
+        "smallLabel": "{words} mots\u00a0: {comparisons} comparaisons",
+        "bigLabel": "{doubledWords} mots\u00a0: {doubled} comparaisons, dont les {comparisons} de la phrase de départ",
+        "caption": "Les têtes d’attention de GPT-3 (2020), et le coût de la grille. <c1></c1> Une seule tête, une grille comme celle du <ch11>chapitre 11</ch11>. <c2></c2> Le carré de {doubledWords} mots contient celui de {words} mots, quatre fois plus de cases.",
+        "facts": {
+            "gpt": {
+                "label": "GPT-3 (2020)",
+                "value": "{layers} couches x {heads} têtes<br></br>= {total} têtes d’attention"
+            },
+            "small": {
+                "label": "{words} mots",
+                "value": "{words}\u00a0x\u00a0{words} = {comparisons} comparaisons"
+            },
+            "big": {
+                "label": "{doubledWords} mots",
+                "value": "{doubledWords}\u00a0x\u00a0{doubledWords} = {doubled} comparaisons<br></br>{factor} fois plus que {comparisons}"
+            }
+        },
+        "readingLabel": "Lecture",
+        "readingNote": "Un point par tête, une couche par ligne.",
+        "next": "Voilà de quoi «\u00a0il\u00a0» a eu besoin pour se comprendre. Relisons-le une dernière fois."
+    }
+}

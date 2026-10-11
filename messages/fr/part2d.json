@@ -1,0 +1,30 @@
+{
+    "ch13": {
+        "headline": "Pour le même «\u00a0il\u00a0», quatre têtes, quatre lectures\u00a0: le plus gros poids de la ligne va de <n>{max}</n> sur «\u00a0{maxWord}\u00a0» à <n>{min}</n> sur «\u00a0{minWord}\u00a0».",
+        "intro": "Une grille d’attention ne capte qu’un seul genre de relation\u00a0: ici, celle qui relie «\u00a0il\u00a0» à son nom. Or une phrase en contient bien d’autres. Un transformer calcule donc plusieurs grilles en parallèle, chacune appelée une tête, et chaque tête lit la même phrase à sa façon.",
+        "combine": "Les résultats de toutes les têtes sont ensuite combinés en un seul. Personne ne leur assigne de rôle\u00a0: chaque tête découvre le sien pendant l’entraînement. La planche ci-dessous en montre quatre, sur la phrase que nous suivons depuis le début\u00a0: la deuxième est la grille des chapitres précédents.",
+        "noteLabel": "Illustratif",
+        "note": "Ces quatre têtes sont illustratives\u00a0: leurs règles sont réglées à la main, alors que les vraies têtes apprennent leur rôle toutes seules et sont rarement aussi nettes.",
+        "crossLabel": "Renvoi",
+        "cross": "GPT-3 (2020) aligne {heads} têtes dans chacune de ses couches\u00a0: voir le <ch15>chapitre 15</ch15>.",
+        "head": "Tête {n}",
+        "names": {
+            "previous": "le mot précédent",
+            "reference": "la référence",
+            "neighbours": "les voisins",
+            "overview": "la vue d’ensemble"
+        },
+        "legend": {
+            "one": "«\u00a0il\u00a0» regarde «\u00a0{top}\u00a0»\u00a0: {share}",
+            "tie": "«\u00a0il\u00a0» regarde «\u00a0{top}\u00a0» et «\u00a0{second}\u00a0»\u00a0: {share} chacun"
+        },
+        "figureLabel": "Quatre têtes d’attention sur la même phrase, chacune avec une grille de {words} mots sur {words}.",
+        "gridLabel": "Tête {n}\u00a0: {name}. Repère 1\u00a0: la ligne de «\u00a0il\u00a0». Repère 2\u00a0: {legend}.",
+        "caption": "Quatre têtes d’attention sur la même phrase, chacune avec sa grille {words} x {words}, lue comme au <ch11>chapitre 11</ch11>. <c1></c1> La ligne de «\u00a0il\u00a0», encadrée dans chaque grille. <c2></c2> Le mot que «\u00a0il\u00a0» regarde le plus, en orange, avec son poids (deux mots s’ils sont à égalité).",
+        "table": {
+            "label": "Poids de la ligne de «\u00a0il\u00a0» dans les quatre têtes, un mot par ligne",
+            "word": "Mot"
+        },
+        "next": "Reste un cas particulier\u00a0: un modèle qui écrit ne peut regarder que ce qui précède."
+    }
+}

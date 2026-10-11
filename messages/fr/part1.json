@@ -1,0 +1,148 @@
+{
+    "figure": "Figure {number}.",
+    "chapter": "Chapitre",
+    "chapterTitle": "Chapitre {number}\u00a0: ",
+    "partLabel": "Partie I\u00a0: Voir",
+    "rail": {
+        "read": "lu",
+        "current": "en cours, {percent}",
+        "next": "à lire"
+    },
+    "confidence": {
+        "above": "> {percent}",
+        "aboveProse": "plus de {percent}"
+    },
+    "opener": {
+        "label": "Partie I",
+        "range": "Chapitres 1 à 4",
+        "srTitle": "Partie I\u00a0: ",
+        "title": "Voir",
+        "subtitle": "Un perceptron reconnaît un chiffre",
+        "posterLabel": "Votre tracé, tel que le réseau le reçoit\u00a0: 784 points sur une grille de 28\u00a0x\u00a028, la surface de chaque point porte l’encre",
+        "dimension": "28 px",
+        "input": "Entrée\u00a0: 28\u00a0x\u00a028, 784 valeurs",
+        "output": {
+            "digit": "Sortie\u00a0: {digit}, {percent}",
+            "empty": "Sortie\u00a0: aucune",
+            "loading": "Sortie\u00a0: en attente",
+            "error": "Sortie\u00a0: erreur"
+        }
+    },
+    "pad": {
+        "tools": "Souris, doigt ou stylet",
+        "size": "28\u00a0x\u00a028",
+        "label": "Zone de dessin",
+        "hint": "Entrée\u00a0: poser ou lever le stylo. Flèches\u00a0: déplacer.",
+        "empty": "Dessinez un chiffre ici",
+        "clear": "Effacer",
+        "undo": "Annuler le trait"
+    },
+    "ch1": {
+        "body": "Un réseau de {count} paramètres le reconnaît en direct, dans votre navigateur.<sup>1</sup> Rien n’est envoyé à un serveur.",
+        "noteLabel": "Note 1",
+        "note": "Les dix tiges sont les probabilités de sortie, une par chiffre\u00a0; leur somme vaut 1.",
+        "noteAlmost": "Ici, le {digit} prend presque tout.",
+        "noteLead": "Ici, le {digit} arrive en tête, à {percent}.",
+        "caption": "Le tracé, la prédiction et les dix probabilités de sortie.",
+        "captionLive": "Le tracé, la prédiction et les dix probabilités de sortie\u00a0: le {digit} l’emporte à {percent}.",
+        "prediction": "Prédiction",
+        "confidence": "Confiance",
+        "probs": "Probabilités de sortie",
+        "range": "0 à 1",
+        "probsLabel": "Probabilités de sortie\u00a0: le {digit} à {percent}, les neuf autres chiffres se partagent le reste",
+        "probsNone": "Probabilités de sortie\u00a0: aucune prédiction",
+        "status": {
+            "loading": "Chargement du réseau",
+            "error": "Le réseau n’a pas pu être chargé. Rechargez la page pour réessayer.",
+            "empty": "Dessinez un chiffre pour lancer la prédiction."
+        },
+        "announce": "Prédiction\u00a0: {digit}, confiance {percent}"
+    },
+    "ch2": {
+        "body": "Votre tracé est recadré dans un carré de 20\u00a0x\u00a020, centré,<sup>2</sup> puis réduit en 784 nombres entre 0 et 1\u00a0: c’est tout ce que le réseau reçoit.<sup>3</sup>",
+        "noteLabel": "Notes 2 et 3",
+        "note2": "Le cadre de 20\u00a0x\u00a020 laisse une marge de 4 pixels de chaque côté, comme dans les images du jeu MNIST.",
+        "note3": "Un 7 barré, à la française\u00a0? Ce réseau, entraîné sur les chiffres manuscrits américains du jeu MNIST, y voit un 3 à {percent}.",
+        "gridLabel": "Image de 28\u00a0x\u00a028 pixels transmise au réseau, avec le cadre de 20\u00a0x\u00a020 où tient le tracé.",
+        "gridHint": "Survolez-la ou utilisez les flèches pour déplacer la loupe.",
+        "frame": "20\u00a0x\u00a020",
+        "detail": "Détail\u00a0: lignes {rowFrom} à {rowTo}, colonnes {colFrom} à {colTo}",
+        "detailLabel": "Détail agrandi de 6\u00a0x\u00a06 pixels avec leurs valeurs, de 0 pour le fond à 1 pour l’encre pleine",
+        "dimension": "28 px",
+        "caption": "L’image transmise au réseau\u00a0: 28\u00a0x\u00a028 points dont la surface porte l’encre, le cadre de 20\u00a0x\u00a020 en pointillé et, agrandi, un détail du tracé avec ses valeurs. Déplacez la loupe sur l’image pour lire d’autres pixels."
+    },
+    "ch3": {
+        "body": "Chaque couche recombine la précédente.<sup>4</sup> Sur 256 neurones, {first} s’allument dans la première couche cachée et {second} dans la seconde\u00a0; les autres restent\u00a0à\u00a0zéro.",
+        "noteLabel": "Note 4",
+        "note": "Où se logent les {total} paramètres\u00a0:",
+        "breakdown": {
+            "first": "Entrée vers couche 1",
+            "second": "Couche 1 vers couche 2",
+            "output": "Couche 2 vers sortie",
+            "total": "Total"
+        },
+        "architecture": "784 / 256 / 256 / 10",
+        "totalParams": "{total} paramètres au total",
+        "input": {
+            "title": "Entrée",
+            "sub": "784 pixels",
+            "size": "28\u00a0x\u00a028",
+            "label": "Entrée\u00a0: les 784 pixels de l’image"
+        },
+        "relu": "ReLU",
+        "softmax": "softmax",
+        "params": "{count} paramètres",
+        "layerSize": "16\u00a0x\u00a016",
+        "neuron": "neurone {neuron}",
+        "hidden1": {
+            "title": "Couche cachée 1",
+            "sub": "256 neurones, {active} actifs",
+            "labelBest": "Couche cachée 1\u00a0: activations des 256 neurones, le neurone {neuron} est le plus actif",
+            "labelPicked": "Couche cachée 1\u00a0: activations des 256 neurones, le neurone {neuron} est sélectionné",
+            "pick": "Couche cachée 1, choix du neurone. Utilisez les flèches pour sélectionner un neurone."
+        },
+        "hidden2": {
+            "title": "Couche cachée 2",
+            "sub": "256 neurones, {active} actifs",
+            "label": "Couche cachée 2\u00a0: activations des 256 neurones"
+        },
+        "output": {
+            "title": "Sortie",
+            "sub": "10 chiffres",
+            "label": "Sortie\u00a0: le neurone du {digit} est le plus allumé des dix",
+            "labelSure": "Sortie\u00a0: le neurone du {digit} est allumé, les neuf autres sont éteints",
+            "labelNone": "Sortie\u00a0: aucun neurone allumé"
+        },
+        "caption": "Le réseau, couche par couche\u00a0: chaque point est un neurone et sa surface, son activation. Le neurone {neuron}, en orange, est le plus actif de la première couche. Cliquez sur un point de la première couche pour l’inspecter.",
+        "captionPicked": "Le réseau, couche par couche\u00a0: chaque point est un neurone et sa surface, son activation. Le neurone {neuron}, en orange, est celui que vous inspectez. Cliquez sur un point de la première couche pour en choisir un autre."
+    },
+    "ch4": {
+        "body": "Un neurone de la première couche donne un poids à chacun des 784 pixels.<sup>5</sup> Redessinés en 28\u00a0x\u00a028, ces poids montrent la forme qui l’excite et celle\u00a0qui\u00a0l’éteint.",
+        "noteLabel": "Note 5",
+        "note": "Personne n’a dessiné ces poids\u00a0: ils se sont réglés pendant l’entraînement, exemple après exemple.",
+        "eyebrow": "Inspecteur de neurone",
+        "title": "Neurone {neuron} de la couche 1",
+        "previous": "Neurone précédent",
+        "next": "Neurone suivant",
+        "counter": "{neuron} / {total}",
+        "follow": "Le plus actif",
+        "fieldLabel": "Poids du neurone {neuron}\u00a0: 784 valeurs replacées sur la grille 28\u00a0x\u00a028, points pleins excitateurs, anneaux inhibiteurs",
+        "seeks": "Ce qu’il cherche",
+        "seeksText": "Ses 784 poids replacés sur la grille de l’image\u00a0: l’encre qu’il attend d’un côté, l’encre qui le freine de l’autre.",
+        "status": {
+            "loading": "Chargement des poids du réseau",
+            "error": "Les poids n’ont pas pu être chargés."
+        },
+        "scaleLabel": "Échelle des poids, de -1 à 1\u00a0: un anneau pour un poids négatif, un point plein pour un poids positif, la surface croît avec la valeur absolue",
+        "inhibitory": "inhibiteur",
+        "excitatory": "excitateur",
+        "activation": {
+            "label": "Activation",
+            "best": "le plus actif de la couche, valeur normalisée",
+            "some": "valeur normalisée, 1 étant le plus actif de la couche",
+            "off": "éteint pour ce tracé, ramené à zéro par le ReLU",
+            "none": "aucun tracé à lire"
+        },
+        "caption": "Les 784 poids du neurone {neuron} replacés sur la grille de l’image\u00a0: points pleins excitateurs, anneaux inhibiteurs, surface proportionnelle au poids."
+    }
+}

@@ -1,0 +1,8 @@
+{
+    "rail": "Interlude",
+    "label": "Between the two parts",
+    "title": "What a fixed gaze cannot do",
+    "statement": "<muted>The perceptron reads each pixel at a fixed place and never compares one pixel with another.</muted> To read a sentence, you need the opposite: every word looks at the others and decides which ones matter. That is the job of <signal>attention</signal>.",
+    "from": "Part I: a fixed gaze",
+    "to": "Part II: Read"
+}

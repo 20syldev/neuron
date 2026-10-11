@@ -1,0 +1,22 @@
+{
+    "kicker": "Epilogue",
+    "headline": "What “il” learned",
+    "text": "At the start, “il” was only a list of numbers, the same in every sentence. It asked a question, compared its query with the keys of every word, turned the scores into a recipe, then blended the values. By the end, “il” points to the animal when the sentence ends in “tired”, and to the boulevard when it ends in “wide”: its meaning comes from the other words.",
+    "summaryLabel": "Summary",
+    "summary": "A question, keys, scores, a recipe, a blend: that is the story of <ch7>chapters 7 to 10</ch7>.",
+    "further": "Further reading",
+    "references": {
+        "attention": {
+            "title": "Attention Is All You Need",
+            "author": "Vaswani et al., 2017"
+        },
+        "illustrated": {
+            "title": "The Illustrated Transformer",
+            "author": "Jay Alammar, 2018"
+        },
+        "video": {
+            "title": "Attention in transformers, visually explained",
+            "author": "3Blue1Brown, 2024"
+        }
+    }
+}
