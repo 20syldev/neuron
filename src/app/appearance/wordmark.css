@@ -1,0 +1,141 @@
+@keyframes wmIn {
+    from {
+        transform: scale(0);
+    }
+    60% {
+        transform: scale(1.08);
+    }
+}
+
+@keyframes wmIdle {
+    0%,
+    100% {
+        transform: scale(0.938);
+    }
+    50% {
+        transform: scale(1.058);
+    }
+}
+
+@keyframes wmBreath {
+    0%,
+    100% {
+        transform: scale(1);
+    }
+    15% {
+        transform: scale(1.18);
+    }
+}
+
+@keyframes wmRing {
+    0% {
+        transform: scale(1);
+        opacity: 0.8;
+    }
+    70%,
+    100% {
+        transform: scale(3.2);
+        opacity: 0;
+    }
+}
+
+.wm-d,
+.wm-ring {
+    transform-box: fill-box;
+    transform-origin: center;
+}
+
+.wm-d {
+    transition: r 0.38s cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+
+.wm[data-hot="true"] .wm-d {
+    transition-duration: 0.14s;
+}
+
+.wm-ring {
+    opacity: 0;
+}
+
+.wm-anim .wm-d {
+    animation-name: wmIdle, wmIn;
+    animation-duration: 6s, 0.45s;
+    animation-timing-function: ease-in-out, cubic-bezier(0.2, 0.7, 0.2, 1);
+    animation-delay: var(--wm-idle), var(--wm-in);
+    animation-iteration-count: infinite, 1;
+    animation-fill-mode: none, backwards;
+}
+
+.wm-anim .wm-g {
+    animation: wmIn 0.45s cubic-bezier(0.2, 0.7, 0.2, 1) var(--wm-in) 1 normal backwards;
+}
+
+.wm-anim .wm-h {
+    animation-name: none, wmIn;
+}
+
+.wm-anim .wm-sig {
+    animation-name: wmBreath, wmIn;
+    animation-duration: 3s, 0.45s;
+    animation-timing-function: ease-out, cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+
+.wm-anim .wm-ring {
+    animation: wmRing 3s ease-out 1.4s infinite;
+}
+
+.wm[data-paused="true"] .wm-d {
+    animation-play-state: paused, running;
+}
+
+.wm[data-paused="true"] .wm-g {
+    animation-play-state: running;
+}
+
+.wm[data-paused="true"] .wm-ring {
+    animation-play-state: paused;
+}
+
+@media (min-width: 761px) {
+    .wm-anim[data-hot="true"] .wm-d:not(.wm-g) {
+        animation-play-state: paused, running;
+    }
+}
+
+.mk-sig {
+    animation: wmBreath 3s ease-out infinite;
+}
+
+.mk-ring {
+    animation: wmRing 3s ease-out infinite;
+}
+
+@media (max-width: 760px) {
+    .wm-anim .wm-d,
+    .wm-anim .wm-g {
+        animation: wmIn 0.45s cubic-bezier(0.2, 0.7, 0.2, 1) var(--wm-in) 1 normal backwards;
+    }
+
+    .wm-anim .wm-sig {
+        animation-name: wmBreath, wmIn;
+        animation-duration: 3s, 0.45s;
+        animation-timing-function: ease-out, cubic-bezier(0.2, 0.7, 0.2, 1);
+        animation-delay: var(--wm-idle), var(--wm-in);
+        animation-iteration-count: infinite, 1;
+        animation-fill-mode: none, backwards;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .wm-d,
+    .wm-ring,
+    .mk-sig,
+    .mk-ring {
+        animation: none !important;
+        transition: none !important;
+    }
+
+    .wm-ring {
+        display: none;
+    }
+}
