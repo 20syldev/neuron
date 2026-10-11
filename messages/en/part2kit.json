@@ -1,0 +1,28 @@
+{
+    "kit": {
+        "part": "Part II",
+        "read": "Read",
+        "chapterTitle": "Chapter {n}: {title}. ",
+        "nextChapter": "Chapter {n}: {title}",
+        "note": "Note",
+        "plate": "Plate",
+        "figure": "Fig.",
+        "callout": "marker {n}",
+        "numbers": {
+            "show": "Show the numbers",
+            "hide": "Hide the numbers"
+        },
+        "variant": {
+            "tired": "tired",
+            "wide": "wide",
+            "sentence": "sentence ending in “<b>{word}</b>”",
+            "frozen": "sentence fixed to “{word}”",
+            "change": "change",
+            "changeLabel": "Change the last word of the sentence (chapter 5)"
+        },
+        "switch": {
+            "sentence": "Last word of the sentence",
+            "short": "Last word"
+        }
+    }
+}

@@ -1,0 +1,12 @@
+{
+    "title": {
+        "first": "De l<apostrophe>’</apostrophe>encre",
+        "second": "au sens"
+    },
+    "label": "Prologue",
+    "lead": "Comment un réseau de neurones reconnaît un chiffre que vous dessinez, puis comment un transformer lit une phrase en décidant quels mots s’écoutent. Quinze chapitres, deux expériences, et tout tourne dans votre navigateur.",
+    "start": "Commencer\u00a0: dessiner un chiffre",
+    "jump": "Aller à la partie II",
+    "noteLabel": "Note",
+    "note": "Deux parties, quinze chapitres et deux expériences. Tout le calcul se fait localement, dans votre navigateur."
+}

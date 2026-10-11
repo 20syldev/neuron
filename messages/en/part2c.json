@@ -1,0 +1,174 @@
+{
+    "ch11": {
+        "headline": "<n>{words} words</n> look at <n>{words} words</n>: <n>{weights} weights</n>, computed in one go.",
+        "intro": "Every word does the same thing at the same time: each one sends a query, each one offers a key. The result is a grid, known as the attention matrix, which a GPU computes in one go.",
+        "noteParallel": "No cell waits for another: a GPU fills them all in parallel.",
+        "reading": "The row<c1></c1> of “il” gives {ilA} to “animal” and {ilF} to “{tired}”; every row adds up to exactly {total}. The column<c2></c2> of “animal” tells who looks at it: mostly “il” ({ilA}) and “n’a” ({naA}), while “était” gives it only {lA}.",
+        "noteOpening": "This is the grid from the opening of this part. Its row for “il” is exactly the one from <ch9>chapter 9</ch9>, sentence ending in “{tired}”.",
+        "figureLabel": "Full attention grid, {words} words by {words}. Marker 1: the row of “il”. Marker 2: the column of “animal”.",
+        "caption": "The full attention grid, {words} words by {words}. <c1></c1> The row of “il”. <c2></c2> The column of “animal”. A row adds up to {total}; a column has no fixed total.",
+        "facts": {
+            "row": {
+                "label": "Row of “il”",
+                "value": "“animal” {ilA}<br></br>“{tired}” {ilF}<br></br>total {total}"
+            },
+            "column": {
+                "label": "Column “animal”",
+                "value": "“il” {ilA}<br></br>“n’a” {naA}<br></br>“était” {lA}"
+            },
+            "weights": {
+                "label": "Weights",
+                "value": "{words}\u00a0x\u00a0{words} = {weights}"
+            }
+        },
+        "matrix": {
+            "whoLooks": "who looks",
+            "lookedAt": "looked at"
+        },
+        "readingLabel": "Reading",
+        "readingNote": "A row: what a word looks at. A column: who looks at that word.",
+        "next": "Yet this grid knows nothing about word order: the place of each word has to be marked."
+    },
+    "ch12": {
+        "headline": "Without position, “mord” gives <n>{tie}</n> to each noun; with it, the subject wins: <n>{win}</n> against {lose}.",
+        "intro": "“le chien mord l’homme” (the dog bites the man) and “l’homme mord le chien” (the man bites the dog) use the same five words, yet their meaning flips. But the attention of the previous chapters only looks at the words, not at where they stand: with nothing else to go on, the row of “mord” is exactly the same in both sentences, and the network cannot tell who bites whom.",
+        "toyLabel": "Toy",
+        "toyNote": "These scores are set by hand for this toy: a real model learns its own, from billions of sentences, and its position marker is not a simple bonus point.",
+        "plan": "So each word gets, before attention, a marker of its place: a small numeric signal that says “first”, “second”, “third”. The original transformer built it from sine waves; the toy below cuts it down to its simplest effect, one extra score point for the word right before. Flip the marker: the row of “mord”<c1></c1> changes, and the word that bites takes the lead among the most looked-at words<c2></c2>.",
+        "rotationNote": "Many recent models add nothing to the words: they rotate the queries and keys by an angle that depends on the place. The method changes, the idea stays the same: mark where each word stands.",
+        "switch": {
+            "label": "Position marker",
+            "off": "without position marker",
+            "on": "with position marker"
+        },
+        "aside": "what “mord” looks at",
+        "words": {
+            "le": "le",
+            "chien": "chien",
+            "mord": "mord",
+            "l'": "l’",
+            "homme": "homme"
+        },
+        "panel": {
+            "dog": {
+                "title": "Sentence A",
+                "text": "le chien mord l’homme",
+                "biter": "Who bites: “chien” (the dog)"
+            },
+            "man": {
+                "title": "Sentence B",
+                "text": "l’homme mord le chien",
+                "biter": "Who bites: “homme” (the man)"
+            },
+            "label": "{title}, {text}. Weight “mord” gives to each word: {weights}.",
+            "top": "Most looked at: “{first}”, then “{second}”",
+            "tie": "Most looked at: “{first}” and “{second}”, tied"
+        },
+        "verdict": {
+            "off": {
+                "tag": "Identical",
+                "text": "The two rows of “mord” are identical: “{first}” and “{second}” get {tie} each, in sentence A as in sentence B."
+            },
+            "on": {
+                "tag": "Subject leads",
+                "text": "In each sentence, the word that bites wins: in sentence A, “{aFirst}” {aWin} against {aLose} for “{aSecond}”; in sentence B, “{bFirst}” {bWin} against {bLose} for “{bSecond}”."
+            }
+        },
+        "caption": "<c1></c1> The word that looks, “mord”, at the same place ({place}) in both sentences. <c2></c2> Its two most looked-at words, in orange. A dot’s area follows the weight. With the marker, each word carries its place and the word right before “mord” gains +{bonus} on its score.",
+        "readingLabel": "Reading",
+        "readingNote": "One row per sentence: the row of “mord”. A dot’s area follows the weight, as in the grid of <ch11>chapter 11</ch11>.",
+        "table": {
+            "label": "{title}, {text}",
+            "word": "word",
+            "off": "without",
+            "on": "with",
+            "marker": "marker",
+            "total": "total"
+        },
+        "facts": {
+            "rule": {
+                "label": "Toy marker",
+                "value": "+{bonus} on the raw score of the word right before the one that looks"
+            },
+            "raw": {
+                "label": "Raw scores of “mord”, without then with the marker",
+                "value": "Sentence A, “chien”: {a0}, then {a1}<br></br>Sentence B, “homme”: {b0}, then {b1}"
+            },
+            "sum": {
+                "label": "Total of a row",
+                "value": "{total} in every case"
+            }
+        },
+        "next": "A single grid is not enough, though: a transformer computes several in parallel."
+    },
+    "ch14": {
+        "headline": "Arriving at “il”, the model hesitates: “animal” <n>{ilA}</n>, “boulevard” <n>{ilB}</n>.",
+        "intro": "A chatbot writes word after word: each word can only look backwards, because a causal mask hides everything that comes after it. When the model arrives at “il”, it has not yet seen “{tired}”.",
+        "cellsLabel": "Cells",
+        "cells": "Masked cells: {masked} out of {cells}, everything above the diagonal.",
+        "reading": "Arriving at “il”<c1></c1>, the model has read only ten words: it hesitates between “animal” ({ilA}) and “boulevard” ({ilB}), and nothing settles it yet. It is “{tired}”<c2></c2>, further on, that looks backwards: towards “il” ({fIl}) and towards “animal” ({fA}). The last word ties “il” back to the animal.",
+        "rows": "Each row still adds up to {total}, but only over the words already read.",
+        "figureLabel": "Causal grid, {words} words by {words}: the upper half, the future words, is masked. “il” hesitates between “animal” {ilA} and “boulevard” {ilB}. “{tired}” looks at “il” at {fIl} and at “animal” at {fA}.",
+        "tag": "masked future",
+        "caption": "The causal grid: future words are masked. <c1></c1> The row of “il”, which has read only ten words. <c2></c2> The row of “{tired}”, which looks backwards.",
+        "facts": {
+            "masked": {
+                "label": "Masked cells",
+                "value": "{masked} out of {cells}"
+            },
+            "hesitates": {
+                "label": "“il” hesitates",
+                "value": "“animal” {ilA}<br></br>“boulevard” {ilB}"
+            },
+            "backward": {
+                "label": "“{tired}” looks backwards",
+                "value": "“il” {fIl}<br></br>“animal” {fA}"
+            },
+            "sentence": {
+                "label": "Sentence",
+                "value": "ending in “{tired}”, fixed"
+            }
+        },
+        "readingLabel": "Reading",
+        "readingNote": "The hatching marks the words not yet written: the model cannot look at them.",
+        "next": "The last step is to measure the cost of all this: layers, heads and comparisons."
+    },
+    "ch15": {
+        "headline": "Doubling the sentence quadruples the work: from <n>{comparisons}</n> to <n>{doubled}</n> comparisons.",
+        "intro": "GPT-3 (2020) stacks {layers} layers of {heads} heads, or {total} attention heads in all. And since every word is compared with every other, doubling the text quadruples the work.",
+        "gptNote": "GPT-3 (2020) lines up {heads} heads in each of its {layers} layers. It is cited because its numbers are public: the architectures of recent large commercial models are generally not published.",
+        "reading": "One dot per head, one layer per row: the orange dot<c1></c1> is a single head, a {words}\u00a0x\u00a0{words} grid like the one in <ch11>chapter 11</ch11>. For {words} words the grid holds {comparisons} comparisons; for {doubledWords} words it holds {doubled}<c2></c2>, four\u00a0times\u00a0as\u00a0many.",
+        "doublingNote": "Doubling the text: {words} words give {comparisons} comparisons, {doubledWords} words give {doubled}.",
+        "aside": "{total} heads",
+        "axisLayers": "{layers} layers",
+        "axisHeads": "{heads} heads per layer",
+        "figureLabel": "{total} dots: one attention head per dot, {layers} layers of {heads} heads. One orange dot: a single head.",
+        "summary": "GPT-3 (2020): {layers} layers times {heads} heads, or {total} attention heads.",
+        "statLabel": "attention heads in GPT-3 (2020)",
+        "statFormula": "{layers} layers x {heads} heads",
+        "smallWords": "{words} words",
+        "bigWords": "{doubledWords} words",
+        "smallComparisons": "{comparisons} comparisons",
+        "bigComparisons": "{doubled} comparisons",
+        "smallLabel": "{words} words: {comparisons} comparisons",
+        "bigLabel": "{doubledWords} words: {doubled} comparisons, including the {comparisons} of the starting sentence",
+        "caption": "The attention heads of GPT-3 (2020), and the cost of the grid. <c1></c1> A single head, a grid like the one in <ch11>chapter 11</ch11>. <c2></c2> The square for {doubledWords} words contains the one for {words} words and has four times as many cells.",
+        "facts": {
+            "gpt": {
+                "label": "GPT-3 (2020)",
+                "value": "{layers} layers x {heads} heads<br></br>= {total} attention heads"
+            },
+            "small": {
+                "label": "{words} words",
+                "value": "{words}\u00a0x\u00a0{words} = {comparisons} comparisons"
+            },
+            "big": {
+                "label": "{doubledWords} words",
+                "value": "{doubledWords}\u00a0x\u00a0{doubledWords} = {doubled} comparisons<br></br>{factor} times as many as {comparisons}"
+            }
+        },
+        "readingLabel": "Reading",
+        "readingNote": "One dot per head, one layer per row.",
+        "next": "That is what “il” needed to make sense of itself. Let us read it one last time."
+    }
+}

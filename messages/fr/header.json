@@ -1,0 +1,72 @@
+{
+    "contents": "Sommaire",
+    "skip": "Aller à l’essai",
+    "close": "Fermer le sommaire",
+    "title": "De l’encre au sens",
+    "nav": "Navigation de l’essai",
+    "parts": {
+        "1": "Voir",
+        "2": "Lire",
+        "2more": "Partie II, suite"
+    },
+    "extras": {
+        "prologue": "Prologue",
+        "interlude": "Interlude",
+        "epilogue": "Épilogue"
+    },
+    "tags": {
+        "read": "lu",
+        "current": "en cours"
+    },
+    "aria": {
+        "read": "Chapitre {number}\u00a0: {title}, lu",
+        "current": "Chapitre {number}\u00a0: {title}, en cours, lu à {percent}",
+        "next": "Chapitre {number}\u00a0: {title}"
+    },
+    "status": {
+        "read": "{count, plural, one {# chapitre lu sur 15} other {# chapitres lus sur 15}}",
+        "current": "{number} en cours, {percent}",
+        "prologue": "Prologue, en cours",
+        "count": "{count, plural, one {# lu sur 15} other {# lus sur 15}}"
+    },
+    "chapters": {
+        "1": "Dessinez un chiffre",
+        "2": "Ce que voit le réseau",
+        "3": "Couche après couche",
+        "4": "Ce que cherche un neurone",
+        "5": "Le problème",
+        "6": "Le graphe d’attention",
+        "7": "Requête, clé, valeur",
+        "8": "Le produit scalaire",
+        "9": "Softmax",
+        "10": "La somme pondérée",
+        "11": "La grille d’attention",
+        "12": "L’ordre des mots",
+        "13": "Plusieurs têtes",
+        "14": "Le masque causal",
+        "15": "Couches et coût"
+    },
+    "language": {
+        "label": "Langue",
+        "fr": "FR\u00a0: français",
+        "en": "EN\u00a0: English"
+    },
+    "theme": {
+        "toggle": "Changer de thème"
+    },
+    "toc": {
+        "count": "{total} chapitres, {read, plural, one {# lu} other {# lus}}",
+        "legend": "Légende",
+        "read": "lu",
+        "current": "en cours",
+        "next": "à lire",
+        "partPrefix": "Partie {part}\u00a0: ",
+        "subtitle": {
+            "1": "Un perceptron reconnaît un chiffre",
+            "2": "Un transformer décide quels mots s’écoutent"
+        },
+        "range": "{from} à {to}",
+        "interlude": "Interlude\u00a0: Ce qu’un regard fixe ne sait pas faire",
+        "epilogue": "Épilogue\u00a0: Ce que «\u00a0il\u00a0» a appris"
+    }
+}

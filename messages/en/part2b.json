@@ -1,0 +1,82 @@
+{
+    "ch8": {
+        "statement": "“il” scores <n>{a}</n> with “animal” and <n>{b}</n> with “boulevard”.",
+        "intro": "The comparison is a dot product: multiply the two vectors component by component, then add up the products. Two vectors that point the same way give a high score; vectors pointing in opposite directions give a low one, even a negative one.",
+        "formulaLabel": "Formula",
+        "formulaNote": "score = q1 x k1 + q2 x k2 + ... + q8 x k8, one component of the query times the matching component of the key.",
+        "scores": "With “{word}”, the query of “il” and the key of “animal” give a score of {a}<c1></c1>, against {b} with the key of “boulevard”<c2></c2>. Each dot of the plate is the product of one component of the query and the matching component of the key; the score is their sum.",
+        "rounding": "The products on the plate are rounded to two decimal places.",
+        "pairAnimal": "“il” and “animal”",
+        "pairBoulevard": "“il” and “boulevard”",
+        "labelAnimal": "The 8 products of “il” and “animal”, sentence ending in “{word}”: {list}",
+        "labelBoulevard": "The 8 products of “il” and “boulevard”, sentence ending in “{word}”: {list}",
+        "scoreAnimal": "Score with “animal”: ",
+        "scoreBoulevard": "Score with “boulevard”: ",
+        "separator": ", ",
+        "caption": "The eight products, component by component, then their sum. <c1></c1> Score of “il” with “animal”. <c2></c2> Score of “il” with “boulevard”. Sentence ending in “{word}”.",
+        "formula": "score = q1 x k1 + q2 x k2 + ... + q8 x k8",
+        "numbers": {
+            "formula": "Formula",
+            "animal": "Products with “animal”",
+            "boulevard": "Products with “boulevard”",
+            "scores": "Scores",
+            "scoreAnimal": "“animal” {score}",
+            "scoreBoulevard": "“boulevard” {score}"
+        },
+        "readingLabel": "Reading",
+        "reading": "Filled dot: positive product. Empty ring: negative product. The area is proportional to the absolute value.",
+        "next": "These raw scores can take any value: they have to be turned into weights."
+    },
+    "ch9": {
+        "statement": "With “{word}”, “il” gives <n>{share}</n> of its attention to “{first}”.",
+        "intro": "Raw scores can take any value. Softmax turns them into weights between 0 and 1 that add up to exactly 1: a recipe.",
+        "formulaLabel": "Formula",
+        "formulaNote": "weight = exp(score) / sum of exp(score).",
+        "scores": "With “{word}”, the scores {firstScore}<c1></c1> for “{first}” and {secondScore}<c2></c2> for “{second}” become {firstShare} and {secondShare}. The other {others} words share the remaining {rest}.",
+        "sum": "The thirteen weights always add up to exactly 1, or {total}.",
+        "waffleLabel": "{dots} dots: {first} for “{firstWord}”, {second} for “{secondWord}”, {rest} for the other {others} words.",
+        "scale": "{dots} dots = {total}",
+        "quoted": "“{word}”",
+        "others": "the other {others} words",
+        "table": {
+            "title": "Word, raw score, weight, sentence ending in “{word}”",
+            "label": "Scores and weights of the 13 words, sentence ending in “{word}”",
+            "score": "score",
+            "weight": "weight"
+        },
+        "formula": "weight = exp(score) / sum of exp(score)",
+        "numbers": {
+            "formula": "Formula",
+            "sum": "Sum",
+            "always": "always exactly {total}"
+        },
+        "caption": "The recipe: 100 dots, one per percent. <c1></c1> The weight of the word that receives the most attention. <c2></c2> The weight of the second. The other {others} words share the rest.",
+        "readingLabel": "Reading",
+        "reading": "One dot per percent: the orange dots belong to the word that receives the most attention.",
+        "next": "All that remains is to blend the values according to these weights."
+    },
+    "ch10": {
+        "statement": "What “il” receives: <n>{firstShare}</n> of “{first}” and <n>{secondShare}</n> of “{second}”.",
+        "intro": "Each value is multiplied by its weight, then everything is added up. The blend is then added to the vector of “il”.",
+        "valueNote": "A value is not a key: the key decides whether a word gets chosen, the value is what it passes on once chosen.",
+        "mix": "The thirteen values are scaled by the weights of <link>chapter 9</link>. With “{word}”, the blend<c1></c1> is made of {firstShare} of “{first}”<c2></c2>, {secondShare} of “{second}” and {rest} of the other words.",
+        "addNote": "The blend is added to the vector of “il”: it does not replace it.",
+        "figureLabel": "The 13 values, weighted by attention, merge into one for “il”: “{first}” {firstShare}, “{second}” {secondShare}, the rest {rest}.",
+        "mixLabel": "“il” after attention",
+        "conclusion": {
+            "tired": "After attention, “il” carries the information of <a>“animal”</a> and <b>“tired”</b>: it now stands for the tired animal.",
+            "wide": "After attention, “il” carries the information of <a>“boulevard”</a> and <b>“wide”</b>: it now stands for the boulevard that is too wide."
+        },
+        "caption": "The thirteen values, weighted, merge into one. <c1></c1> The blend meant for “il”. The dots are rounded: only the percentages are exact. <c2></c2> The heaviest value. Sentence ending in “{word}”.",
+        "numbers": {
+            "mix": "“il” after attention",
+            "line": "{share} “{word}”",
+            "rest": "{share} the rest",
+            "drawing": "Drawing",
+            "rounded": "rounded dots, the percentages are exact",
+            "sentence": "Sentence",
+            "word": "ending in “{word}”"
+        },
+        "next": "Every word does the same thing at the same time: together they form a grid."
+    }
+}

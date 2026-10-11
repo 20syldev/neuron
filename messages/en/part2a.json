@@ -1,0 +1,100 @@
+{
+    "opener": {
+        "rail": "Part",
+        "range": "Chapters 5 to 15",
+        "srTitle": "Part II: Read. ",
+        "headline": "<n>{words} words</n>, <n>{weights} weights</n>: a transformer decides which words listen to each other.",
+        "intro": "This part follows a single sentence of thirteen words, in French on purpose (chapter 5 explains why). Each word looks at all the others and decides how much each one counts: the plate below gives the full measure, {rows} rows and {columns} columns, or {weights} attention weights in all.",
+        "toyNote": "The model in this part is a toy model with {dimensions} dimensions, its weights set by hand to stay readable.",
+        "rowText": "The row of “il”<m1></m1> carries its two largest dots in orange: {p1} for “{t1}”<m2></m2> and {p2} for “{t2}”. Chapters 5 to 15 take this grid apart step by step, from the isolated word to the cost of a real model.",
+        "switchNote": "The last word of the sentence can be changed in <link>chapter 5</link>: “{tired}” or “{wide}”. The grid shown here is the one for “{tired}”.",
+        "plateTag": "{word}, {count} words",
+        "posterLabel": "Attention grid of the sentence, {count} words by {count}: each row shows what one word looks at. The row of “il” gives {p1} to “{t1}” and {p2} to “{t2}”.",
+        "query": "il",
+        "span": "{count}\u00a0x\u00a0{count} = {total} weights",
+        "caption": "The attention grid of the sentence. A row is a word that looks, a column a word that is looked at; the area of the dot is proportional to the weight. <m1></m1> The row of “il”. <m2></m2> The two largest weights of this row, in orange.",
+        "numbers": {
+            "row": "Row of “il”, sentence ending in “{word}”",
+            "sentence": "Sentence",
+            "sentenceValue": "{count} words",
+            "weights": "Attention weights",
+            "weightsValue": "{count}\u00a0x\u00a0{count} = {total}",
+            "vectors": "Vectors",
+            "vectorsValue": "{dimensions} dimensions",
+            "rowSum": "Sum of a row"
+        },
+        "readingLabel": "Reading",
+        "reading": "Each dot is an attention weight and its area is proportional to the weight. The {count} weights of a row always add up to {sum}.",
+        "next": "Let us start with the sentence, and with what the machine sees of it."
+    },
+    "ch5": {
+        "statement": "Out of <n>{words} words</n>, only one changes, and “il” goes from the animal to the boulevard.",
+        "intro": "You know at once that “il” (English “it”) means the animal. Change the last word to “{wide}” and “il” becomes the boulevard. For the machine, to begin with, “il” is just a list of numbers, the same in every sentence.",
+        "genderNote": "Both nouns are masculine on purpose: “il” fits either, so French grammar cannot settle it (a feminine noun would call for “elle”). That is why the example stays in French, apart from its last word, shown in English.",
+        "candidates": "So there are two candidates for a single pronoun: “il”<m1></m1> has to choose between “animal”<m2></m2> and “boulevard”. Depending on the last word of the sentence, which you set in the plate below, the answer changes; <link>chapters 6 to 10</link> follow that setting.",
+        "positionLabel": "Position",
+        "position": "In the sentence, “animal” is the second word, “boulevard” the seventh and “il” the tenth, out of thirteen.",
+        "plateTag": "{count} words",
+        "quoteOpen": "“",
+        "quoteClose": "”",
+        "gloss": "In English: “The animal didn’t cross the boulevard because it was too {word}.”",
+        "switchHint": "The only setting of Part II: chapters 6 to 10 follow it.",
+        "caption": "The starting sentence. <m1></m1> The word whose meaning we look for. <m2></m2> The two nouns it hesitates between. The last word can be switched between “{tired}” and “{wide}”.",
+        "numbers": {
+            "query": "Query",
+            "queryValue": "“il”, word {position} of {count}",
+            "candidates": "Candidates",
+            "candidateValue": "“{token}”, word {position}",
+            "last": "Last word",
+            "lastValue": "“{token}” ({word}), word {position} of {count}",
+            "sentence": "Sentence",
+            "sentenceValue": "{count} words"
+        },
+        "next": "Let us see how “il” looks at the other words, and how much each one counts."
+    },
+    "ch6": {
+        "statement": "“il” mostly listens to two words: “{t1}” at <n>{p1}</n> and “{t2}” at <n>{p2}</n>.",
+        "intro": "Each word becomes a node. Attention lets “il” look at all the others and decide how much each one counts: thick line, very relevant; thin line, barely relevant.",
+        "linksNote": "The graph only shows the links that start from “il”: the grid of <link>chapter 11</link> shows them all.",
+        "reading": "With “{word}”, the thickest line links “il” to “{t1}”<m1></m1> ({p1}), then to “{t2}”<m2></m2> ({p2}). “{t3}” receives only {p3}, and the {thinCount} words with the thinnest lines get just {thinWeight} each.",
+        "widthNote": "The thickness of a line is proportional to the attention weight. The percentages are read from the plate.",
+        "figureLabel": "Attention from “il” to each word, sentence ending in “{word}”. The strongest: “{t1}” {p1}, “{t2}” {p2}, “{t3}” {p3}.",
+        "caption": "Attention from “il” to each word, sentence ending in “{word}”. <m1></m1> The thickest line. <m2></m2> The second one. Under each word, a dot whose area follows the weight.",
+        "numbers": {
+            "all": "Weights from “il” to each word, strongest to weakest, sentence ending in “{word}”",
+            "thickest": "Thickest lines",
+            "then": "Then",
+            "pair": "“{word}” {percent}",
+            "thinnest": "Thinnest lines",
+            "thinnestValue": "{weight}, {count} words"
+        },
+        "next": "But where do these weights come from? “il” computes them from three vectors."
+    },
+    "ch7": {
+        "statement": "“il” asks its question in <n>eight numbers</n>, and that question changes with the sentence.",
+        "intro": "To work out what it refers to, “il” builds three vectors: a query (what I am looking for), a key (what I contain) and a value (what I pass on if I am chosen). The weights that produce them are learned during training: nobody writes them by hand.",
+        "absorbNote": "In this toy model, “il” has already absorbed the adjective in an earlier layer: that is why its query changes from one version of the sentence to the other, while the keys stay put.",
+        "reading": "The query<m1></m1> of “il” changes with the last word of the sentence; the keys<m2></m2> of “animal” and “boulevard” stay put. Each vector here is a row of eight numbers, compared column by column in the next chapter.",
+        "toyNote": "Toy model with {dimensions} dimensions, weights set by hand to stay readable. A real model has thousands of dimensions and learns its weights from billions of words.",
+        "queryTitle": "Query of “il”",
+        "queryChange": "changes with the sentence: “{word}”",
+        "keyTitle": "Key of “{token}”",
+        "keyFixed": "fixed",
+        "queryLabel": "Query of “il”, sentence ending in “{word}”: {values}",
+        "keyLabel": "Key of “{token}”: {values}",
+        "separator": ", ",
+        "span": "{dimensions} dimensions",
+        "legend": "Legend",
+        "legendQuery": "query",
+        "legendKey": "key",
+        "legendValue": "value",
+        "caption": "The eight components of each vector, sentence ending in “{word}”. <m1></m1> The query of “il”. <m2></m2> The keys of “animal” and “boulevard”. Circle, query; square, key; diamond, value.",
+        "numbers": {
+            "query": "Query of “il”, ending in “{word}”",
+            "key": "Key of “{token}”"
+        },
+        "readingLabel": "Reading",
+        "readingNote": "The area of the dot follows the value of the component; an empty ring marks a negative value.",
+        "next": "Now the query of “il” has to be compared with each of these keys: that is a dot product."
+    }
+}

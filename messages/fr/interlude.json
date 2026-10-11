@@ -1,0 +1,8 @@
+{
+    "rail": "Interlude",
+    "label": "Entre les deux parties",
+    "title": "Ce qu’un regard fixe ne sait pas faire",
+    "statement": "<muted>Le perceptron lit chaque pixel à une place fixe et ne compare jamais deux pixels entre eux.</muted> Pour lire une phrase, il faut l’inverse\u00a0: que chaque mot regarde les autres et décide lesquels comptent. C’est le rôle de <signal>l’attention</signal>.",
+    "from": "Partie I\u00a0: un regard fixe",
+    "to": "Partie II\u00a0: Lire"
+}

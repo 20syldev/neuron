@@ -1,0 +1,100 @@
+{
+    "opener": {
+        "rail": "Partie",
+        "range": "Chapitres 5 à 15",
+        "srTitle": "Partie II\u00a0: Lire. ",
+        "headline": "<n>{words}\u00a0mots</n>, <n>{weights}\u00a0poids</n>\u00a0: un transformer décide quels mots s’écoutent.",
+        "intro": "Cette partie suit une seule phrase de treize mots. Chaque mot y regarde tous les autres et décide combien chacun compte\u00a0: la planche ci-dessous en donne la mesure complète, {rows} lignes et {columns} colonnes, soit {weights} poids d’attention.",
+        "toyNote": "Le modèle de cette partie est un modèle jouet à {dimensions} dimensions, aux poids réglés à la main pour rester lisibles.",
+        "rowText": "La ligne de «\u00a0il\u00a0»<m1></m1> porte ses deux plus gros points en orange\u00a0: {p1} pour «\u00a0{t1}\u00a0»<m2></m2> et {p2} pour «\u00a0{t2}\u00a0». Les chapitres 5 à 15 défont cette grille pas à pas, du mot isolé jusqu’au coût d’un vrai modèle.",
+        "switchNote": "Le dernier mot de la phrase se règle au <link>chapitre 5</link>\u00a0: «\u00a0{tired}\u00a0» ou «\u00a0{wide}\u00a0». La grille ci-contre est celle de «\u00a0{tired}\u00a0».",
+        "plateTag": "{word}, {count} mots",
+        "posterLabel": "Grille d’attention de la phrase, {count} mots sur {count}\u00a0: chaque ligne montre ce que regarde un mot. La ligne de «\u00a0il\u00a0» donne {p1} à «\u00a0{t1}\u00a0» et {p2} à «\u00a0{t2}\u00a0».",
+        "query": "il",
+        "span": "{count}\u00a0x\u00a0{count} = {total} poids",
+        "caption": "La grille d’attention de la phrase. Une ligne est un mot qui regarde, une colonne un mot regardé\u00a0; la surface du point suit le poids. <m1></m1> La ligne de «\u00a0il\u00a0». <m2></m2> Les deux plus gros poids de cette ligne, en orange.",
+        "numbers": {
+            "row": "Ligne de «\u00a0il\u00a0», phrase en «\u00a0{word}\u00a0»",
+            "sentence": "Phrase",
+            "sentenceValue": "{count} mots",
+            "weights": "Poids d’attention",
+            "weightsValue": "{count}\u00a0x\u00a0{count} = {total}",
+            "vectors": "Vecteurs",
+            "vectorsValue": "{dimensions} dimensions",
+            "rowSum": "Somme d’une ligne"
+        },
+        "readingLabel": "Lecture",
+        "reading": "Chaque point est un poids d’attention et sa surface suit la valeur. Les {count} poids d’une ligne totalisent toujours {sum}.",
+        "next": "Commençons par la phrase, et par ce que la machine en voit."
+    },
+    "ch5": {
+        "statement": "Sur <n>{words}\u00a0mots</n>, un seul change, et «\u00a0il\u00a0» passe de l’animal au boulevard.",
+        "intro": "Vous savez tout de suite que «\u00a0il\u00a0», c’est l’animal. Changez un mot, «\u00a0{wide}\u00a0», et «\u00a0il\u00a0» devient le boulevard. Pour la machine, au départ, «\u00a0il\u00a0» n’est qu’une liste de nombres, la même dans toutes les phrases.",
+        "genderNote": "Les deux noms sont masculins exprès\u00a0: en français, la grammaire ne trahit pas la réponse.",
+        "candidates": "Il y a donc deux candidats pour un seul pronom\u00a0: «\u00a0il\u00a0»<m1></m1> doit choisir entre «\u00a0animal\u00a0»<m2></m2> et «\u00a0boulevard\u00a0». Selon le dernier mot de la phrase, que vous réglez dans la planche ci-dessous, ce choix change\u00a0; les <link>chapitres 6 à 10</link> suivent ce réglage.",
+        "positionLabel": "Position",
+        "position": "Dans la phrase, «\u00a0animal\u00a0» est le deuxième mot, «\u00a0boulevard\u00a0» le septième et «\u00a0il\u00a0» le dixième, sur treize.",
+        "plateTag": "{count} mots",
+        "quoteOpen": "«\u00a0",
+        "quoteClose": "\u00a0»",
+        "gloss": "",
+        "switchHint": "Le seul réglage de la partie II\u00a0: les chapitres 6 à 10 le suivent.",
+        "caption": "La phrase de départ. <m1></m1> Le mot dont on cherche le sens. <m2></m2> Les deux noms entre lesquels il hésite. Le dernier mot est réglable, «\u00a0{tired}\u00a0» ou «\u00a0{wide}\u00a0».",
+        "numbers": {
+            "query": "Requête",
+            "queryValue": "«\u00a0il\u00a0», mot {position} sur {count}",
+            "candidates": "Candidats",
+            "candidateValue": "«\u00a0{token}\u00a0», mot {position}",
+            "last": "Dernier mot",
+            "lastValue": "«\u00a0{token}\u00a0», mot {position} sur {count}",
+            "sentence": "Phrase",
+            "sentenceValue": "{count} mots"
+        },
+        "next": "Voyons comment «\u00a0il\u00a0» regarde les autres mots, et combien chacun compte."
+    },
+    "ch6": {
+        "statement": "«\u00a0il\u00a0» écoute surtout deux mots\u00a0: «\u00a0{t1}\u00a0» à <n>{p1}</n> et «\u00a0{t2}\u00a0» à <n>{p2}</n>.",
+        "intro": "Chaque mot devient un nœud. L’attention permet à «\u00a0il\u00a0» de regarder tous les autres et de décider combien chacun compte\u00a0: trait épais, très pertinent\u00a0; trait fin, à peine.",
+        "linksNote": "Le graphe ne montre que les liens qui partent de «\u00a0il\u00a0»\u00a0: la grille du <link>chapitre 11</link> les montre tous.",
+        "reading": "Avec «\u00a0{word}\u00a0», le trait le plus épais relie «\u00a0il\u00a0» à «\u00a0{t1}\u00a0»<m1></m1> ({p1}), puis à «\u00a0{t2}\u00a0»<m2></m2> ({p2}). «\u00a0{t3}\u00a0» ne reçoit que {p3}, et les {thinCount} mots aux traits les plus fins n’obtiennent que {thinWeight} chacun.",
+        "widthNote": "L’épaisseur du trait est proportionnelle au poids d’attention. Les pourcentages sont lus sur la planche.",
+        "figureLabel": "Attention de «\u00a0il\u00a0» vers chaque mot, phrase en «\u00a0{word}\u00a0». Les plus forts\u00a0: «\u00a0{t1}\u00a0» {p1}, «\u00a0{t2}\u00a0» {p2}, «\u00a0{t3}\u00a0» {p3}.",
+        "caption": "Attention de «\u00a0il\u00a0» vers chaque mot, phrase en «\u00a0{word}\u00a0». <m1></m1> Le trait le plus épais. <m2></m2> Le deuxième. Sous chaque mot, un point dont la surface suit le poids.",
+        "numbers": {
+            "all": "Poids de «\u00a0il\u00a0» vers chaque mot, du plus fort au plus faible, phrase en «\u00a0{word}\u00a0»",
+            "thickest": "Traits les plus épais",
+            "then": "Ensuite",
+            "pair": "«\u00a0{word}\u00a0» {percent}",
+            "thinnest": "Traits les plus fins",
+            "thinnestValue": "{weight}, {count} mots"
+        },
+        "next": "Mais d’où viennent ces poids\u00a0? «\u00a0il\u00a0» les calcule à partir de trois vecteurs."
+    },
+    "ch7": {
+        "statement": "«\u00a0il\u00a0» pose sa question en <n>huit\u00a0nombres</n>, et elle change avec la phrase.",
+        "intro": "Pour savoir à quoi il renvoie, «\u00a0il\u00a0» fabrique trois vecteurs\u00a0: une requête (ce que je cherche), une clé (ce que je contiens) et une valeur (ce que je transmets si on me choisit). Les poids qui les produisent sont appris pendant l’entraînement\u00a0: personne ne les écrit à la main.",
+        "absorbNote": "Dans ce modèle jouet, «\u00a0il\u00a0» a déjà absorbé l’adjectif lors d’une couche précédente\u00a0: c’est pourquoi sa requête change d’une phrase à l’autre, alors que les clés ne bougent pas.",
+        "reading": "La requête<m1></m1> de «\u00a0il\u00a0» change avec le dernier mot de la phrase\u00a0; les clés<m2></m2> de «\u00a0animal\u00a0» et de «\u00a0boulevard\u00a0» ne bougent pas. Chaque vecteur est ici une rangée de huit nombres, comparés colonne par colonne au chapitre suivant.",
+        "toyNote": "Modèle jouet à {dimensions} dimensions, poids réglés à la main pour rester lisibles. Un vrai modèle en compte des milliers, appris sur des milliards de mots.",
+        "queryTitle": "Requête de «\u00a0il\u00a0»",
+        "queryChange": "change avec la phrase\u00a0: «\u00a0{word}\u00a0»",
+        "keyTitle": "Clé de «\u00a0{token}\u00a0»",
+        "keyFixed": "fixe",
+        "queryLabel": "Requête de «\u00a0il\u00a0», phrase en «\u00a0{word}\u00a0»\u00a0: {values}",
+        "keyLabel": "Clé de «\u00a0{token}\u00a0»\u00a0: {values}",
+        "separator": "\u00a0; ",
+        "span": "{dimensions} dimensions",
+        "legend": "Légende",
+        "legendQuery": "requête",
+        "legendKey": "clé",
+        "legendValue": "valeur",
+        "caption": "Les huit composantes de chaque vecteur, phrase en «\u00a0{word}\u00a0». <m1></m1> La requête de «\u00a0il\u00a0». <m2></m2> Les clés de «\u00a0animal\u00a0» et de «\u00a0boulevard\u00a0». Cercle, requête\u00a0; carré, clé\u00a0; losange, valeur.",
+        "numbers": {
+            "query": "Requête de «\u00a0il\u00a0», en «\u00a0{word}\u00a0»",
+            "key": "Clé de «\u00a0{token}\u00a0»"
+        },
+        "readingLabel": "Lecture",
+        "readingNote": "La surface du point suit la valeur de la composante\u00a0; un anneau vide marque une valeur négative.",
+        "next": "Il reste à comparer la requête de «\u00a0il\u00a0» à chacune de ces clés\u00a0: c’est un produit scalaire."
+    }
+}

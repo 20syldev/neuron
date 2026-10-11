@@ -1,0 +1,82 @@
+{
+    "ch8": {
+        "statement": "«\u00a0il\u00a0» marque <n>{a}</n> avec\u00a0«\u00a0animal\u00a0» et <n>{b}</n> avec\u00a0«\u00a0boulevard\u00a0».",
+        "intro": "La comparaison est un produit scalaire\u00a0: on multiplie les composantes deux à deux, puis on additionne. Deux vecteurs qui pointent dans la même direction donnent un score élevé\u00a0; des directions opposées, un score faible, voire négatif.",
+        "formulaLabel": "Formule",
+        "formulaNote": "score = q1 x k1 + q2 x k2 + ... + q8 x k8, une composante de la requête fois la composante de la clé.",
+        "scores": "Avec «\u00a0{word}\u00a0», la requête de «\u00a0il\u00a0» et la clé de «\u00a0animal\u00a0» donnent un score de {a}<c1></c1>, contre {b} avec la clé de «\u00a0boulevard\u00a0»<c2></c2>. Chaque point de la planche est le produit d’une composante de la requête par la composante correspondante de la clé\u00a0; le score est leur somme.",
+        "rounding": "Les produits de la planche sont arrondis au centième.",
+        "pairAnimal": "«\u00a0il\u00a0» et «\u00a0animal\u00a0»",
+        "pairBoulevard": "«\u00a0il\u00a0» et «\u00a0boulevard\u00a0»",
+        "labelAnimal": "Les 8 produits de «\u00a0il\u00a0» et «\u00a0animal\u00a0», phrase en «\u00a0{word}\u00a0»\u00a0: {list}",
+        "labelBoulevard": "Les 8 produits de «\u00a0il\u00a0» et «\u00a0boulevard\u00a0», phrase en «\u00a0{word}\u00a0»\u00a0: {list}",
+        "scoreAnimal": "Score avec «\u00a0animal\u00a0»\u00a0: ",
+        "scoreBoulevard": "Score avec «\u00a0boulevard\u00a0»\u00a0: ",
+        "separator": "\u00a0; ",
+        "caption": "Les huit produits, composante par composante, puis leur somme. <c1></c1> Score de «\u00a0il\u00a0» avec «\u00a0animal\u00a0». <c2></c2> Score de «\u00a0il\u00a0» avec «\u00a0boulevard\u00a0». Phrase en «\u00a0{word}\u00a0».",
+        "formula": "score = q1 x k1 + q2 x k2 + ... + q8 x k8",
+        "numbers": {
+            "formula": "Formule",
+            "animal": "Produits avec «\u00a0animal\u00a0»",
+            "boulevard": "Produits avec «\u00a0boulevard\u00a0»",
+            "scores": "Scores",
+            "scoreAnimal": "«\u00a0animal\u00a0» {score}",
+            "scoreBoulevard": "«\u00a0boulevard\u00a0» {score}"
+        },
+        "readingLabel": "Lecture",
+        "reading": "Point plein\u00a0: produit positif. Anneau vide\u00a0: produit négatif. La surface suit la valeur absolue.",
+        "next": "Ces scores bruts peuvent valoir n’importe quoi\u00a0: il faut les ramener à des poids."
+    },
+    "ch9": {
+        "statement": "Avec «\u00a0{word}\u00a0», «\u00a0il\u00a0» donne <n>{share}</n> de son attention à «\u00a0{first}\u00a0».",
+        "intro": "Les scores bruts peuvent valoir n’importe quoi. La softmax les transforme en poids entre 0 et 1 dont la somme vaut exactement 1\u00a0: une recette.",
+        "formulaLabel": "Formule",
+        "formulaNote": "poids = exp(score) / somme des exp(score).",
+        "scores": "Avec «\u00a0{word}\u00a0», les scores {firstScore}<c1></c1> pour «\u00a0{first}\u00a0» et {secondScore}<c2></c2> pour «\u00a0{second}\u00a0» deviennent {firstShare} et {secondShare}. Les {others} autres mots se partagent les {rest} restants.",
+        "sum": "La somme des treize poids vaut toujours exactement 1, c’est-à-dire {total}.",
+        "waffleLabel": "{dots} points\u00a0: {first} pour «\u00a0{firstWord}\u00a0», {second} pour «\u00a0{secondWord}\u00a0», {rest} pour les {others} autres mots.",
+        "scale": "{dots} points = {total}",
+        "quoted": "«\u00a0{word}\u00a0»",
+        "others": "les {others} autres mots",
+        "table": {
+            "title": "Mot, score brut, poids, phrase en «\u00a0{word}\u00a0»",
+            "label": "Scores et poids des 13 mots, phrase en «\u00a0{word}\u00a0»",
+            "score": "score",
+            "weight": "poids"
+        },
+        "formula": "poids = exp(score) / somme des exp(score)",
+        "numbers": {
+            "formula": "Formule",
+            "sum": "Somme",
+            "always": "toujours exactement {total}"
+        },
+        "caption": "La recette\u00a0: 100 points, chacun valant 1\u00a0%. <c1></c1> Le poids du mot le plus regardé. <c2></c2> Le poids du deuxième. Les {others} autres mots se partagent le reste.",
+        "readingLabel": "Lecture",
+        "reading": "Chaque point vaut 1\u00a0%\u00a0: les points orange appartiennent au mot le plus regardé.",
+        "next": "Il ne reste qu’à mélanger les valeurs selon ces poids."
+    },
+    "ch10": {
+        "statement": "Ce que «\u00a0il\u00a0» reçoit\u00a0: <n>{firstShare}</n> de «\u00a0{first}\u00a0» et <n>{secondShare}</n> de «\u00a0{second}\u00a0».",
+        "intro": "Chaque valeur est multipliée par son poids, puis tout est additionné. Ce mélange s’ajoute au vecteur de «\u00a0il\u00a0».",
+        "valueNote": "La valeur n’est pas la clé\u00a0: la clé sert à être choisi, la valeur à transmettre une fois choisi.",
+        "mix": "Les treize valeurs sont pondérées par les poids du <link>chapitre 9</link>. Avec «\u00a0{word}\u00a0», le mélange<c1></c1> est fait de {firstShare} de «\u00a0{first}\u00a0»<c2></c2>, de {secondShare} de «\u00a0{second}\u00a0» et de {rest} venant des autres mots.",
+        "addNote": "Le mélange s’ajoute au vecteur de «\u00a0il\u00a0»\u00a0: il ne le remplace pas.",
+        "figureLabel": "Les 13 valeurs, pondérées par l’attention, se fondent en une seule pour «\u00a0il\u00a0»\u00a0: «\u00a0{first}\u00a0» {firstShare}, «\u00a0{second}\u00a0» {secondShare}, le reste {rest}.",
+        "mixLabel": "«\u00a0il\u00a0» après l’attention",
+        "conclusion": {
+            "tired": "Après l’attention, «\u00a0il\u00a0» porte l’information de <a>«\u00a0animal\u00a0»</a> et de <b>«\u00a0fatigué\u00a0»</b>\u00a0: il désigne maintenant l’animal fatigué.",
+            "wide": "Après l’attention, «\u00a0il\u00a0» porte l’information de <a>«\u00a0boulevard\u00a0»</a> et de <b>«\u00a0large\u00a0»</b>\u00a0: il désigne maintenant le boulevard trop large."
+        },
+        "caption": "Les treize valeurs, pondérées, se fondent en une seule. <c1></c1> Le mélange destiné à «\u00a0il\u00a0». Les points sont arrondis\u00a0: seuls les pourcentages font foi. <c2></c2> La valeur la plus pesante. Phrase en «\u00a0{word}\u00a0».",
+        "numbers": {
+            "mix": "«\u00a0il\u00a0» après l’attention",
+            "line": "{share} «\u00a0{word}\u00a0»",
+            "rest": "{share} le reste",
+            "drawing": "Dessin",
+            "rounded": "points arrondis, les pourcentages font foi",
+            "sentence": "Phrase",
+            "word": "en «\u00a0{word}\u00a0»"
+        },
+        "next": "Tous les mots font la même chose en même temps\u00a0: l’ensemble forme une grille."
+    }
+}

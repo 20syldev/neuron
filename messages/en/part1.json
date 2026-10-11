@@ -1,0 +1,148 @@
+{
+    "figure": "Figure {number}.",
+    "chapter": "Chapter",
+    "chapterTitle": "Chapter {number}: ",
+    "partLabel": "Part I: See",
+    "rail": {
+        "read": "read",
+        "current": "current, {percent}",
+        "next": "to read"
+    },
+    "confidence": {
+        "above": "> {percent}",
+        "aboveProse": "more than {percent}"
+    },
+    "opener": {
+        "label": "Part I",
+        "range": "Chapters 1 to 4",
+        "srTitle": "Part I: ",
+        "title": "See",
+        "subtitle": "A perceptron recognises a digit",
+        "posterLabel": "Your drawing as the network receives it: 784 dots on a 28\u00a0x\u00a028 grid, the area of each dot shows how much ink there is",
+        "dimension": "28 px",
+        "input": "Input: 28\u00a0x\u00a028, 784 values",
+        "output": {
+            "digit": "Output: {digit}, {percent}",
+            "empty": "Output: none",
+            "loading": "Output: waiting",
+            "error": "Output: error"
+        }
+    },
+    "pad": {
+        "tools": "Mouse, finger or stylus",
+        "size": "28\u00a0x\u00a028",
+        "label": "Drawing area",
+        "hint": "Enter: pen down or up. Arrows: move.",
+        "empty": "Draw a digit here",
+        "clear": "Clear",
+        "undo": "Undo stroke"
+    },
+    "ch1": {
+        "body": "A network of {count} parameters recognises it live, in your browser.<sup>1</sup> Nothing is sent to a server.",
+        "noteLabel": "Note 1",
+        "note": "The ten stems are the output probabilities, one per digit; they add up to\u00a01.",
+        "noteAlmost": "Here, the {digit} takes nearly all of it.",
+        "noteLead": "Here, the {digit} comes first, at {percent}.",
+        "caption": "The drawing, the prediction and the ten output probabilities.",
+        "captionLive": "The drawing, the prediction and the ten output probabilities: the {digit} wins with {percent}.",
+        "prediction": "Prediction",
+        "confidence": "Confidence",
+        "probs": "Output probabilities",
+        "range": "0 to 1",
+        "probsLabel": "Output probabilities: the {digit} at {percent}, the nine other digits share the rest",
+        "probsNone": "Output probabilities: no prediction",
+        "status": {
+            "loading": "Loading the network",
+            "error": "The network could not be loaded. Reload the page to try again.",
+            "empty": "Draw a digit to start the prediction."
+        },
+        "announce": "Prediction: {digit}, confidence {percent}"
+    },
+    "ch2": {
+        "body": "Your drawing is cropped and fitted into a 20\u00a0x\u00a020 square, centred,<sup>2</sup> then turned into 784 numbers between 0 and 1: that is all the network receives.<sup>3</sup>",
+        "noteLabel": "Notes 2 and 3",
+        "note2": "The 20\u00a0x\u00a020 frame leaves a margin of 4 pixels on each side, like the MNIST images.",
+        "note3": "A 7 with a crossbar, the European way? This network was trained on American handwriting (MNIST) and reads it as a 3, at\u00a0{percent}.",
+        "gridLabel": "The 28\u00a0x\u00a028 pixel image sent to the network, with the 20\u00a0x\u00a020 frame that holds the drawing.",
+        "gridHint": "Hover over it or use the arrow keys to move the magnifier.",
+        "frame": "20\u00a0x\u00a020",
+        "detail": "Detail: rows {rowFrom} to {rowTo}, columns {colFrom} to {colTo}",
+        "detailLabel": "Enlarged detail of 6\u00a0x\u00a06 pixels with their values, from 0 for the background to 1 for full ink",
+        "dimension": "28 px",
+        "caption": "The image sent to the network: 28\u00a0x\u00a028 dots whose area shows the ink, the 20\u00a0x\u00a020 frame in dotted outline and, enlarged, a detail of the drawing with its values. Move the magnifier over the image to read other pixels."
+    },
+    "ch3": {
+        "body": "Each layer recombines the output of the previous one.<sup>4</sup> Out of 256 neurons, {first} light up in the first hidden layer and {second} in the second; the others stay at zero.",
+        "noteLabel": "Note 4",
+        "note": "Where the {total} parameters live:",
+        "breakdown": {
+            "first": "Input to layer 1",
+            "second": "Layer 1 to layer 2",
+            "output": "Layer 2 to output",
+            "total": "Total"
+        },
+        "architecture": "784 / 256 / 256 / 10",
+        "totalParams": "{total} parameters in all",
+        "input": {
+            "title": "Input",
+            "sub": "784 pixels",
+            "size": "28\u00a0x\u00a028",
+            "label": "Input: the 784 pixels of the image"
+        },
+        "relu": "ReLU",
+        "softmax": "softmax",
+        "params": "{count} parameters",
+        "layerSize": "16\u00a0x\u00a016",
+        "neuron": "neuron {neuron}",
+        "hidden1": {
+            "title": "Hidden layer 1",
+            "sub": "256 neurons, {active} active",
+            "labelBest": "Hidden layer 1: activations of the 256 neurons, neuron {neuron} is the most active",
+            "labelPicked": "Hidden layer 1: activations of the 256 neurons, neuron {neuron} is selected",
+            "pick": "Hidden layer 1, neuron picker. Use the arrow keys to select a neuron."
+        },
+        "hidden2": {
+            "title": "Hidden layer 2",
+            "sub": "256 neurons, {active} active",
+            "label": "Hidden layer 2: activations of the 256 neurons"
+        },
+        "output": {
+            "title": "Output",
+            "sub": "10 digits",
+            "label": "Output: the neuron for {digit} is the brightest of the ten",
+            "labelSure": "Output: the neuron for {digit} is lit, the other nine are off",
+            "labelNone": "Output: no neuron lit"
+        },
+        "caption": "The network, layer after layer: each dot is a neuron and its area is its activation. Neuron {neuron}, in orange, is the most active in the first layer. Click a dot in the first layer to inspect it.",
+        "captionPicked": "The network, layer after layer: each dot is a neuron and its area is its activation. Neuron {neuron}, in orange, is the one you are inspecting. Click a dot in the first layer to change it."
+    },
+    "ch4": {
+        "body": "A neuron in the first layer assigns a weight to each of the 784 pixels.<sup>5</sup> Redrawn as 28\u00a0x\u00a028, these weights show the shape that excites it and the one that silences\u00a0it.",
+        "noteLabel": "Note 5",
+        "note": "Nobody drew these weights: they tuned themselves during training, example after example.",
+        "eyebrow": "Neuron inspector",
+        "title": "Neuron {neuron} of layer 1",
+        "previous": "Previous neuron",
+        "next": "Next neuron",
+        "counter": "{neuron} / {total}",
+        "follow": "Most active",
+        "fieldLabel": "Weights of neuron {neuron}: 784 values mapped back onto the 28\u00a0x\u00a028 grid, solid dots are excitatory, rings are inhibitory",
+        "seeks": "What it looks for",
+        "seeksText": "Its 784 weights mapped back onto the image grid: the ink it expects on one side, the ink that holds it back on the other.",
+        "status": {
+            "loading": "Loading the network weights",
+            "error": "The weights could not be loaded."
+        },
+        "scaleLabel": "Weight scale, from -1 to 1: a ring for a negative weight, a solid dot for a positive weight, the area grows with the absolute value",
+        "inhibitory": "inhibitory",
+        "excitatory": "excitatory",
+        "activation": {
+            "label": "Activation",
+            "best": "the most active in the layer, normalised value",
+            "some": "normalised value, 1 being the most active in the layer",
+            "off": "off for this drawing, set to zero by the ReLU",
+            "none": "no drawing yet"
+        },
+        "caption": "The 784 weights of neuron {neuron} mapped back onto the image grid: solid dots excitatory, rings inhibitory, area proportional to the weight."
+    }
+}
