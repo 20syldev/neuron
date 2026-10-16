@@ -40,7 +40,7 @@ export function Mark({ className }: MarkProps) {
     return (
         <a
             ref={ref}
-            href="#haut"
+            href="#top"
             aria-label={t("home")}
             className={cn(
                 "wm -ml-[5px] box-border flex h-11 w-10 flex-none items-center justify-center text-foreground max-[760px]:-ml-2",

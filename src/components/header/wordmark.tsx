@@ -69,7 +69,7 @@ export function Wordmark() {
     return (
         <div ref={ref} className="wm wm-anim relative z-1 bg-background">
             <div className="mx-auto max-w-[1280px] px-(--gutter) pt-8 pb-4">
-                <a href="#haut" aria-label={t("home")} className="block text-foreground">
+                <a href="#top" aria-label={t("home")} className="block text-foreground">
                     <svg
                         viewBox={`0 0 ${WORD_VIEW.width} ${WORD_VIEW.height}`}
                         aria-hidden="true"

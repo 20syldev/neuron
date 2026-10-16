@@ -53,7 +53,7 @@ export function Prologue() {
                             {t("start")}
                         </a>
                         <a
-                            href="#partie-2"
+                            href="#part-2"
                             className="inline-flex h-[46px] items-center gap-2 rounded-[3px] border border-border-strong pr-[13px] pl-4 text-[15px] font-medium text-foreground transition-colors hover:bg-muted"
                         >
                             {t("jump")}

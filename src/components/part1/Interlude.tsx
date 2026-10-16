@@ -49,7 +49,7 @@ export function Interlude() {
                 <div className="mt-[18px] flex flex-wrap items-center justify-between gap-x-6 gap-y-3 font-mono text-[11px] leading-4 font-medium tracking-[0.12em] text-muted-foreground uppercase">
                     <span>{t("from")}</span>
                     <a
-                        href="#partie-2"
+                        href="#part-2"
                         className="group inline-flex items-center gap-2 text-foreground max-[760px]:min-h-10"
                     >
                         <span className="group-hover:underline group-hover:decoration-1 group-hover:underline-offset-4">

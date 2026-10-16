@@ -56,7 +56,7 @@ export function SiteFooter() {
             <div className="mt-8 flex flex-wrap items-end justify-between gap-x-12 gap-y-5">
                 <div>
                     <a
-                        href="#haut"
+                        href="#top"
                         aria-label={t("home")}
                         className="inline-flex min-h-10 items-center gap-2.5"
                     >

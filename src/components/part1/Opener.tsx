@@ -60,8 +60,8 @@ export function Opener() {
 
     return (
         <section
-            id="partie-1"
-            aria-labelledby="partie-1-t"
+            id="part-1"
+            aria-labelledby="part-1-t"
             className="mx-auto w-full max-w-[1280px] px-(--gutter) pt-[168px] -scroll-mt-42 max-[760px]:pt-22 max-[760px]:-scroll-mt-22"
         >
             <div className="flex flex-wrap items-baseline justify-between gap-x-6 gap-y-2 border-b border-foreground pb-3 font-mono text-[11px] leading-4 font-medium tracking-[0.14em] text-muted-foreground uppercase">
@@ -77,7 +77,7 @@ export function Opener() {
                         I
                     </p>
                     <h2
-                        id="partie-1-t"
+                        id="part-1-t"
                         className={`${DISPLAY} mt-[30px] mb-0 text-[clamp(76px,10vw,128px)] leading-[0.9] font-semibold tracking-[-0.018em] text-balance`}
                     >
                         <span className="sr-only">{t("srTitle")}</span>

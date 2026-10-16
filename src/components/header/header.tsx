@@ -15,7 +15,7 @@ export interface HeaderProps {
 /**
  * Header system of the page: the masthead at the top, the compact bar that sticks under it, the
  * page content, then the floating pill and the Sommaire sheet, all inside SommaireProvider. The
- * wrapper is the "haut" anchor targeted by the wordmark and the mark, and it carries the --mh
+ * wrapper is the "top" anchor targeted by the wordmark and the mark, and it carries the --mh
  * custom property (masthead height) that times the scroll cross-fade of the bar, measured on the
  * rendered masthead by MastheadGauge. A skip link, hidden until it takes focus, comes first in the
  * tab order and jumps over the masthead controls to the prologue.
@@ -28,7 +28,7 @@ export function Header({ children }: HeaderProps) {
 
     return (
         <SommaireProvider>
-            <div id="haut" className="hd-root">
+            <div id="top" className="hd-root">
                 <a
                     href={`#${SECTION_IDS.prologue}`}
                     className="sr-only focus-visible:not-sr-only focus-visible:fixed focus-visible:top-3 focus-visible:left-3 focus-visible:z-60 focus-visible:rounded-[3px] focus-visible:bg-foreground focus-visible:px-4 focus-visible:py-2.5 focus-visible:text-sm focus-visible:font-semibold focus-visible:text-background"

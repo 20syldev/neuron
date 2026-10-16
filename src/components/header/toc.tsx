@@ -163,7 +163,7 @@ export function Toc() {
 
     return (
         <section
-            id="sommaire"
+            id="contents"
             aria-labelledby="toc-t"
             className={cn(
                 "mx-auto grid w-full max-w-[1280px] grid-cols-1 gap-y-7 px-(--gutter) pt-32 -scroll-mt-32 max-[760px]:pt-22 max-[760px]:-scroll-mt-22",
@@ -203,7 +203,7 @@ export function Toc() {
                     numeral="I"
                     title={parts("1")}
                     items={items.slice(0, LAST_PART_ONE)}
-                    target="partie-1"
+                    target="part-1"
                     extra={{ id: SECTION_IDS.interlude, title: t("toc.interlude") }}
                 />
                 <TocPart

@@ -60,7 +60,7 @@ export function Opener() {
 
     return (
         <RailLayout
-            id="partie-2"
+            id="part-2"
             titleId="p2-title"
             label={t("rail")}
             value="II"
