@@ -1,24 +1,30 @@
 import { type RefObject, useEffect, useRef } from "react";
 
-const IDLE_MS = 2000;
+import { useReducedMotion } from "@/hooks/useReducedMotion";
 
-const SEEN_RATIO = 0.5;
+const START_MS = 250;
+
+const NEXT_MS = 3000;
 
 /**
- * Decides when an untouched pad draws a sample by itself. Once the pad has been at least half on
- * screen for two seconds the sample is replayed in front of the reader. When the reader scrolls
- * past the pad without drawing, so that it ends up above the viewport, the finished sample is put
- * at once, since the figures below read the drawing and would otherwise stay empty.
+ * Decides when an untouched Part I draws samples by itself. As soon as the section appears on
+ * screen a sample is drawn, then three seconds after each one is complete the next digit replaces
+ * it, for as long as the section is on screen and the reader does nothing. When the section is
+ * entirely above the viewport, because the reader jumped past it, a finished sample is put at
+ * once, since the figures read the drawing and would otherwise stay empty. Under reduced motion a
+ * single finished sample is put and never changed.
  *
- * @param armed - True while the pad is empty and untouched, the watch being off otherwise
- * @param play - Starts a sample, replayed when its argument is false and finished at once when true
- * @returns The ref to attach to the pad element that is watched
+ * @param armed - True while the reader has not touched the pad, the watch being off otherwise
+ * @param play - Starts a sample, drawn when its argument is false and finished at once when true,
+ *   and resolves to true when the sample is complete or to false when it was cut short
+ * @returns The ref to attach to the element that holds the whole section
  */
 export function useSampleTrigger<T extends Element>(
     armed: boolean,
-    play: (instant: boolean) => void,
+    play: (instant: boolean) => Promise<boolean>,
 ): RefObject<T | null> {
     const ref = useRef<T>(null);
+    const reduced = useReducedMotion();
 
     useEffect(() => {
         const element = ref.current;
@@ -28,21 +34,35 @@ export function useSampleTrigger<T extends Element>(
         }
 
         let timer = 0;
+        let active = false;
 
-        const observer = new IntersectionObserver(
-            (entries) => {
-                const entry = entries[entries.length - 1];
-
-                window.clearTimeout(timer);
-
-                if (entry.intersectionRatio >= SEEN_RATIO) {
-                    timer = window.setTimeout(() => play(false), IDLE_MS);
-                } else if (!entry.isIntersecting && entry.boundingClientRect.bottom < 0) {
-                    play(true);
+        const next = () => {
+            void play(reduced).then((finished) => {
+                if (finished && active && !reduced) {
+                    timer = window.setTimeout(next, NEXT_MS);
                 }
-            },
-            { threshold: [0, SEEN_RATIO] },
-        );
+            });
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            const entry = entries[entries.length - 1];
+
+            if (entry.isIntersecting) {
+                if (!active) {
+                    active = true;
+                    timer = window.setTimeout(next, START_MS);
+                }
+
+                return;
+            }
+
+            window.clearTimeout(timer);
+            active = false;
+
+            if (entry.boundingClientRect.bottom < 0) {
+                void play(true);
+            }
+        });
 
         observer.observe(element);
 
@@ -50,7 +70,7 @@ export function useSampleTrigger<T extends Element>(
             window.clearTimeout(timer);
             observer.disconnect();
         };
-    }, [armed, play]);
+    }, [armed, play, reduced]);
 
     return ref;
 }
