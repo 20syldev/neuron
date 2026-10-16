@@ -25,10 +25,6 @@ const MAX_DURATION = 2500;
 
 const SPEED_UP = 1.25;
 
-const MAX_SCALE = 1.7;
-
-const MARGIN = 16;
-
 /**
  * Picks the digit and the recorded drawing a sample will replay: the digit uniformly among the
  * recorded ones, then one of its drawings uniformly.
@@ -55,22 +51,15 @@ export function pickSample(
 }
 
 /**
- * Turns a recorded drawing into a playable plan: the drawing is centred on the pad, scaled to
- * about two thirds of it, slightly rotated, sheared and shifted so that no two replays look alike,
- * and its timeline is sped up and held between 1.3 and 2.5 seconds, pauses included.
+ * Turns a recorded drawing into a playable plan. The points keep the position and the shape they
+ * were recorded with; only the clock changes: it is sped up a little and held between 1.3 and 2.5
+ * seconds, pauses between strokes included, so every sample takes about the same time to draw.
  *
  * @param drawing - Strokes of flat x, y, ms triples in pad units, the time from the first point
  * @param digit - Digit the drawing stands for, kept on the plan
- * @param size - Side of the square pad, in the units of the recorded points
- * @param random - Source of numbers in [0, 1), injected so a test can drive the variation
  * @returns The strokes with their timestamps in milliseconds from the start and the total duration
  */
-export function composeSample(
-    drawing: RawDrawing,
-    digit: number,
-    size: number,
-    random: () => number,
-): SamplePlan {
+export function composeSample(drawing: RawDrawing, digit: number): SamplePlan {
     const raw = drawing.map((flat) =>
         Array.from({ length: flat.length / 3 }, (_, i) => ({
             x: flat[i * 3],
@@ -78,42 +67,15 @@ export function composeSample(
             t: flat[i * 3 + 2],
         })),
     );
-    const all = raw.flat();
-    const minX = Math.min(...all.map((p) => p.x));
-    const maxX = Math.max(...all.map((p) => p.x));
-    const minY = Math.min(...all.map((p) => p.y));
-    const maxY = Math.max(...all.map((p) => p.y));
-    const span = Math.max(maxX - minX, maxY - minY, 1);
-
-    const scale = Math.min(MAX_SCALE, (size * (0.6 + random() * 0.1)) / span);
-    const angle = ((random() - 0.5) * 8 * Math.PI) / 180;
-    const shear = (random() - 0.5) * 0.12;
-    const centerX = size / 2 + (random() - 0.5) * 20;
-    const centerY = size / 2 + (random() - 0.5) * 16;
-    const cos = Math.cos(angle);
-    const sin = Math.sin(angle);
-
-    const recorded = Math.max(...all.map((p) => p.t), 1);
+    const recorded = Math.max(...raw.flat().map((p) => p.t), 1);
     const duration = Math.min(MAX_DURATION, Math.max(MIN_DURATION, recorded / SPEED_UP));
     const clock = duration / recorded;
 
-    const strokes = raw.map((stroke) =>
-        stroke.map((p) => {
-            const u = (p.x - (minX + maxX) / 2) * scale;
-            const v = (p.y - (minY + maxY) / 2) * scale;
-            const sheared = u + shear * v;
-            const x = centerX + sheared * cos - v * sin;
-            const y = centerY + sheared * sin + v * cos;
-
-            return {
-                x: Math.min(size - MARGIN, Math.max(MARGIN, x)),
-                y: Math.min(size - MARGIN, Math.max(MARGIN, y)),
-                t: p.t * clock,
-            };
-        }),
-    );
-
-    return { digit, duration, strokes };
+    return {
+        digit,
+        duration,
+        strokes: raw.map((stroke) => stroke.map((p) => ({ x: p.x, y: p.y, t: p.t * clock }))),
+    };
 }
 
 /**
