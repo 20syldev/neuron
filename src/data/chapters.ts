@@ -16,7 +16,7 @@ export const LAST_PART_ONE = 4;
 export const SECTION_IDS = {
     prologue: "prologue",
     interlude: "interlude",
-    partTwo: "partie-2",
+    partTwo: "part-2",
     epilogue: "epilogue",
 } as const;
 
