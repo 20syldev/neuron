@@ -34,6 +34,7 @@
         "label": "Drawing area",
         "hint": "Enter: pen down or up. Arrows: move.",
         "empty": "Draw a digit here",
+        "sample": "Sample, draw your own",
         "clear": "Clear",
         "undo": "Undo stroke"
     },

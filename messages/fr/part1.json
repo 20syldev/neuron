@@ -34,6 +34,7 @@
         "label": "Zone de dessin",
         "hint": "Entrée\u00a0: poser ou lever le stylo. Flèches\u00a0: déplacer.",
         "empty": "Dessinez un chiffre ici",
+        "sample": "Exemple, dessinez le vôtre",
         "clear": "Effacer",
         "undo": "Annuler le trait"
     },
