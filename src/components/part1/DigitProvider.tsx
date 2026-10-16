@@ -34,7 +34,7 @@ export interface DigitContextValue {
     clear: () => void;
     sample: boolean;
     armed: boolean;
-    playSample: (instant: boolean) => void;
+    playSample: (instant: boolean) => Promise<boolean>;
 }
 
 export interface NeuronContextValue {
@@ -88,8 +88,8 @@ function compute(strokes: Stroke[], model: Model | null, previousBest: number): 
  * network inference and the neuron under inspection. Pointer handlers only update a ref and ask
  * for a frame; the input and the inference are computed once per animation frame, so drawing
  * stays smooth however fast the pointer moves. The pad starts empty and nothing is predicted until
- * the reader draws, or until the pad draws a recorded sample by itself when left untouched; the
- * first stroke, undo or clear of the reader replaces the sample for good.
+ * the reader draws, or until the pad draws recorded samples by itself while the reader leaves it
+ * untouched; the first stroke, undo or clear of the reader replaces the sample for good.
  *
  * @param children - Part I content that reads the drawing and its inference
  */
@@ -132,7 +132,7 @@ export function DigitProvider({ children }: DigitProviderProps) {
         [schedule],
     );
 
-    const player = useSample(PAD_SIZE, applySample);
+    const player = useSample(applySample);
 
     const leaveSample = useCallback(() => {
         player.stop();
@@ -234,7 +234,7 @@ export function DigitProvider({ children }: DigitProviderProps) {
             undo,
             clear,
             sample,
-            armed: !touched && strokes.length === 0,
+            armed: !touched,
             playSample: player.play,
         }),
         [
@@ -277,8 +277,9 @@ export function DigitProvider({ children }: DigitProviderProps) {
  * (null without inference) and its probability (0 without inference), the begin (which replaces
  * a sample), extend (ignored when no stroke is active), end, undo (last stroke) and clear (every
  * stroke) actions of the DigitProvider above, whether the strokes are a sample drawn by the pad
- * itself, whether the pad is still untouched and empty so that a sample may be drawn, and the
- * playSample action, which replays a sample or puts it at once when given true
+ * itself, whether the reader has not touched the pad yet so that samples may be drawn, and the
+ * playSample action, which replays a sample or puts it at once when given true and resolves to
+ * whether the sample was completed
  * @throws When called outside a DigitProvider
  */
 export function useDigit(): DigitContextValue {

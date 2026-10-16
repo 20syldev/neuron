@@ -13,7 +13,6 @@ import {
     useState,
 } from "react";
 
-import { useSampleTrigger } from "@/hooks/useSampleTrigger";
 import { type Point, type Stroke } from "@/lib/digit";
 import { cn } from "@/lib/utils";
 
@@ -95,9 +94,7 @@ function PadButton({ onClick, disabled, children }: PadButtonProps) {
  */
 export function Pad() {
     const t = useTranslations("part1.pad");
-    const { strokes, empty, begin, extend, end, undo, clear, sample, armed, playSample } =
-        useDigit();
-    const watched = useSampleTrigger<HTMLDivElement>(armed, playSample);
+    const { strokes, empty, begin, extend, end, undo, clear, sample } = useDigit();
     const hintId = useId();
     const activePointer = useRef<number | null>(null);
     const box = useRef<PadBox | null>(null);
@@ -200,7 +197,7 @@ export function Pad() {
                 <span>{t("tools")}</span>
                 <span className="font-mono text-[11px]">{t("size")}</span>
             </div>
-            <div ref={watched} className="relative mx-auto aspect-square w-[336px] max-w-full">
+            <div className="relative mx-auto aspect-square w-[336px] max-w-full">
                 <svg
                     viewBox={`0 0 ${PAD_SIZE} ${PAD_SIZE}`}
                     role="application"
