@@ -12,6 +12,7 @@ import {
 } from "react";
 
 import { useModel } from "@/hooks/useModel";
+import { useSample } from "@/hooks/useSample";
 import { type Point, type Stroke, strokesToInput } from "@/lib/digit";
 import { forward, type Inference, type Model, mostActive, predicted } from "@/lib/mlp";
 
@@ -31,6 +32,9 @@ export interface DigitContextValue {
     end: () => void;
     undo: () => void;
     clear: () => void;
+    sample: boolean;
+    armed: boolean;
+    playSample: (instant: boolean) => void;
 }
 
 export interface NeuronContextValue {
@@ -68,7 +72,8 @@ const NeuronContext = createContext<NeuronContextValue | null>(null);
  * @param strokes - Polylines in pad coordinates
  * @param model - Network weights, or null before they are downloaded
  * @param previousBest - Most active neuron kept when the new drawing gives no inference
- * @returns The strokes with their network input, their inference when there is ink and a model, and the most active neuron
+ * @returns The strokes with their network input, their inference when there is ink and a model,
+ * and the most active neuron
  */
 function compute(strokes: Stroke[], model: Model | null, previousBest: number): Snapshot {
     const input = strokesToInput(strokes, PAD_SIZE, BRUSH);
@@ -82,8 +87,9 @@ function compute(strokes: Stroke[], model: Model | null, previousBest: number): 
  * Holds the live state of Part I: the strokes of the pad, the 28 x 28 input they produce, the
  * network inference and the neuron under inspection. Pointer handlers only update a ref and ask
  * for a frame; the input and the inference are computed once per animation frame, so drawing
- * stays smooth however fast the pointer moves. The pad starts empty: nothing is predicted until the
- * reader draws.
+ * stays smooth however fast the pointer moves. The pad starts empty and nothing is predicted until
+ * the reader draws, or until the pad draws a recorded sample by itself when left untouched; the
+ * first stroke, undo or clear of the reader replaces the sample for good.
  *
  * @param children - Part I content that reads the drawing and its inference
  */
@@ -91,12 +97,15 @@ export function DigitProvider({ children }: DigitProviderProps) {
     const { model, status } = useModel();
     const [snapshot, setSnapshot] = useState<Snapshot>(() => compute([], null, DEFAULT_NEURON));
     const [chosen, setChosen] = useState<number | null>(null);
+    const [touched, setTouched] = useState(false);
+    const [sample, setSample] = useState(false);
 
     const strokesRef = useRef<Stroke[]>([]);
     const modelRef = useRef<Model | null>(null);
     const drawingRef = useRef(false);
     const frameRef = useRef(0);
     const bestRef = useRef(DEFAULT_NEURON);
+    const sampleRef = useRef(false);
 
     const flush = useCallback(() => {
         frameRef.current = 0;
@@ -113,6 +122,30 @@ export function DigitProvider({ children }: DigitProviderProps) {
         }
     }, [flush]);
 
+    const applySample = useCallback(
+        (next: Stroke[]) => {
+            sampleRef.current = true;
+            strokesRef.current = next;
+            setSample(true);
+            schedule();
+        },
+        [schedule],
+    );
+
+    const player = useSample(PAD_SIZE, applySample);
+
+    const leaveSample = useCallback(() => {
+        player.stop();
+        setTouched(true);
+
+        const replaced = sampleRef.current;
+
+        sampleRef.current = false;
+        setSample(false);
+
+        return replaced;
+    }, [player]);
+
     useEffect(() => {
         modelRef.current = model;
         schedule();
@@ -128,11 +161,13 @@ export function DigitProvider({ children }: DigitProviderProps) {
 
     const begin = useCallback(
         (point: Point) => {
+            const replaced = leaveSample();
+
             drawingRef.current = true;
-            strokesRef.current = [...strokesRef.current, [point]];
+            strokesRef.current = [...(replaced ? [] : strokesRef.current), [point]];
             schedule();
         },
-        [schedule],
+        [leaveSample, schedule],
     );
 
     const extend = useCallback(
@@ -161,16 +196,18 @@ export function DigitProvider({ children }: DigitProviderProps) {
     }, [schedule]);
 
     const undo = useCallback(() => {
+        leaveSample();
         drawingRef.current = false;
         strokesRef.current = strokesRef.current.slice(0, -1);
         schedule();
-    }, [schedule]);
+    }, [leaveSample, schedule]);
 
     const clear = useCallback(() => {
+        leaveSample();
         drawingRef.current = false;
         strokesRef.current = [];
         schedule();
-    }, [schedule]);
+    }, [leaveSample, schedule]);
 
     const selectNeuron = useCallback((neuron: number | null) => {
         setChosen(neuron === null ? null : ((neuron % NEURONS) + NEURONS) % NEURONS);
@@ -196,6 +233,9 @@ export function DigitProvider({ children }: DigitProviderProps) {
             end,
             undo,
             clear,
+            sample,
+            armed: !touched && strokes.length === 0,
+            playSample: player.play,
         }),
         [
             strokes,
@@ -210,6 +250,9 @@ export function DigitProvider({ children }: DigitProviderProps) {
             end,
             undo,
             clear,
+            sample,
+            touched,
+            player.play,
         ],
     );
 
@@ -228,12 +271,14 @@ export function DigitProvider({ children }: DigitProviderProps) {
 /**
  * Reads the live Part I state.
  *
- * @returns The strokes (polylines in pad coordinates, the pre-drawn 7 first), the network input
- * (784 values in 0..1, zeros on an empty pad), the empty flag, the model (null until downloaded) and
- * its download status, the inference (null on an empty pad or before the model is ready), the
- * predicted digit (null without inference) and its probability (0 without inference), and the
- * begin, extend (ignored when no stroke is active), end, undo (last stroke) and clear (every
- * stroke) actions of the DigitProvider above
+ * @returns The strokes (polylines in pad coordinates), the network input (784 values in 0..1,
+ * zeros on an empty pad), the empty flag, the model (null until downloaded) and its download
+ * status, the inference (null on an empty pad or before the model is ready), the predicted digit
+ * (null without inference) and its probability (0 without inference), the begin (which replaces
+ * a sample), extend (ignored when no stroke is active), end, undo (last stroke) and clear (every
+ * stroke) actions of the DigitProvider above, whether the strokes are a sample drawn by the pad
+ * itself, whether the pad is still untouched and empty so that a sample may be drawn, and the
+ * playSample action, which replays a sample or puts it at once when given true
  * @throws When called outside a DigitProvider
  */
 export function useDigit(): DigitContextValue {

@@ -13,6 +13,7 @@ import {
     useState,
 } from "react";
 
+import { useSampleTrigger } from "@/hooks/useSampleTrigger";
 import { type Point, type Stroke } from "@/lib/digit";
 import { cn } from "@/lib/utils";
 
@@ -94,7 +95,9 @@ function PadButton({ onClick, disabled, children }: PadButtonProps) {
  */
 export function Pad() {
     const t = useTranslations("part1.pad");
-    const { strokes, empty, begin, extend, end, undo, clear } = useDigit();
+    const { strokes, empty, begin, extend, end, undo, clear, sample, armed, playSample } =
+        useDigit();
+    const watched = useSampleTrigger<HTMLDivElement>(armed, playSample);
     const hintId = useId();
     const activePointer = useRef<number | null>(null);
     const box = useRef<PadBox | null>(null);
@@ -197,7 +200,7 @@ export function Pad() {
                 <span>{t("tools")}</span>
                 <span className="font-mono text-[11px]">{t("size")}</span>
             </div>
-            <div className="relative mx-auto aspect-square w-[336px] max-w-full">
+            <div ref={watched} className="relative mx-auto aspect-square w-[336px] max-w-full">
                 <svg
                     viewBox={`0 0 ${PAD_SIZE} ${PAD_SIZE}`}
                     role="application"
@@ -241,6 +244,11 @@ export function Pad() {
                 {empty ? (
                     <span className="pointer-events-none absolute inset-0 flex items-center justify-center text-sm text-muted-foreground">
                         {t("empty")}
+                    </span>
+                ) : null}
+                {sample ? (
+                    <span className="pointer-events-none absolute inset-x-0 bottom-2 text-center text-[11px] text-muted-foreground">
+                        {t("sample")}
                     </span>
                 ) : null}
                 <p
